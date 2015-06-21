@@ -12,23 +12,18 @@ icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'ico
 metaset = selfAddon.getSetting('enable_meta')
 
 def CATEGORIES():
-        addDir2('Latest Cinema Releases','http://onlinemovies.pro/category/most-popular-new-movies/?filtre=date',1,icon,'',fanart)
-        addDir2('Recently Added','http://onlinemovies.pro/category/genre/?filtre=date',1,icon,'',fanart)
-        addDir2('Most Viewed','http://onlinemovies.pro/category/genre/?filtre=views',1,icon,'',fanart)
-        addDir2('Highest Rated','http://onlinemovies.pro/category/genre/?filtre=rate',1,icon,'',fanart)
-        addDir2('HD Movies','http://onlinemovies.pro/category/hd-movies/?filtre=random',1,icon,'',fanart) 
-        addDir2('Christmas Movies','http://onlinemovies.pro/category/christmas-movies/',1,icon,'',fanart)
-        addDir2('Disney','http://onlinemovies.pro/category/disneys/',1,icon,'',fanart)
-        addDir2('Latest TV Episodes','http://onlinemovies.pro/category/serials/',1,icon,'',fanart) 
+        addDir2('Latest Cinema Releases','http://watch-onlinemovies.pro/?display=tube&filtre=date',1,icon,'',fanart)
+        addDir2('Most Viewed','http://watch-onlinemovies.pro/?display=tube&filtre=views',1,icon,'',fanart)
+        addDir2('Highest Rated','http://watch-onlinemovies.pro/?display=tube&filtre=rate',1,icon,'',fanart)
         addDir2('Search','url',3,icon,'',fanart)
         xbmc.executebuiltin('Container.SetViewMode(50)')
                
 def GETMOVIES(url,name):
         metaset = selfAddon.getSetting('enable_meta')
         link = open_url(url)
-        match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)[:-12]
+        match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)[:-13]
         if 'serials' in url:
-                match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)[:-12]
+                match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)[:-13]
                 metaset='false'
         for url,name in match:
                 name=cleanHex(name)
@@ -60,7 +55,7 @@ def SEARCH():
     if keyboard.isConfirmed():
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
-        url = 'http://onlinemovies.pro/?s='+ search_entered
+        url = 'http://watch-onlinemovies.pro/?s='+ search_entered
         link = open_url(url)
         GETMOVIES(url,name)
 
