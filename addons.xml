@@ -482,6 +482,26 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.SportsDonkey"
+       name="Sports Donkey"
+       version="2.0.4"
+       provider-name="MetalKettle">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">Sports Donkey</summary>
+    <description lang="en">Live streams, Video On Demand</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.stalker" name="IPTV Stalker" version="1.0.18" provider-name="esxbr">
     <requires>
 		<import addon="xbmc.python" version="2.14.0"/>
