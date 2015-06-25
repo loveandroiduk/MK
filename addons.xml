@@ -464,6 +464,24 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.speedway" name="Speedway" version="1.0.1" provider-name="MetalKettle / @SpeedwayKodi">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">SPEEDWAY KODI is an add-on full of various videos relating to all things Speedway from around the world.  It has been put  together by the fans, for the fans.  At no point has, nor will there be any fee required to  access this add- on.  In the spirit of the KODI community it will remain free of charge.</summary>
+    <description lang="en">SPEEDWAY KODI is an add-on full of various videos relating to all things Speedway from around the world.  It has been put  together by the fans, for the fans.  At no point has, nor will there be any fee required to  access this add- on.  In the spirit of the KODI community it will remain free of charge.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.stalker" name="IPTV Stalker" version="1.0.18" provider-name="esxbr">
     <requires>
 		<import addon="xbmc.python" version="2.14.0"/>
