@@ -1,4 +1,4 @@
-import xbmc,xbmcaddon,xbmcgui,xbmcplugin,urllib,urllib2,os,re,sys,urlresolver
+import xbmc,xbmcaddon,xbmcgui,xbmcplugin,urllib,urllib2,os,re,sys,urlresolver,random
 from resources.libs.common_addon import Addon
 
 addon_id        = 'plugin.video.speedway'
@@ -47,10 +47,12 @@ def PLAYLINK(url):
             xbmc.Player ().play(urlresolver.HostedMediaFile(url).resolve())
          
 def open_url(url):
+        url += '?%d=%d' % (random.randint(1, 10000), random.randint(1, 10000))
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
         link=response.read()
+        link = link.replace('\r','').replace('\t','').replace('&nbsp;','').replace('\'','')
         response.close()
         return link
 
