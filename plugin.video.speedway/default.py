@@ -17,7 +17,13 @@ def Index():
                 url = url.replace(' ','%20')
                 addDir(name,url,1,iconimage,fanart)
         addLink('[COLOR blue][B]Twitter Feed[/COLOR][/B]','url',2,icon,fanart)
-               
+        addLink('Upcoming Live TV Coverage','http://metalkettle.co/Speedway/COVERAGE_INFO.txt',4,icon,fanart)
+
+def Coverage(url):
+        text = open_url(url)
+        showText('[COLOR gold][B]Upcoming Coverage[/B][/COLOR]', text)
+
+        
 def GetChans(url):
         if 'Index' in url:
                 CatIndex(url)
@@ -147,5 +153,5 @@ if mode==None or url==None or len(url)<1: Index()
 elif mode==1:GetChans(url)
 elif mode==2:twitter()
 elif mode==3:PLAYLINK(url)
-
+elif mode==4:Coverage(url)
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
