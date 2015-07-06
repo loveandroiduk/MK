@@ -17,11 +17,11 @@ def Index():
                 url = url.replace(' ','%20')
                 addDir(name,url,1,iconimage,fanart)
         addLink('[COLOR blue][B]Twitter Feed[/COLOR][/B]','url',2,icon,fanart)
-        addLink('Upcoming Live TV Coverage','http://metalkettle.co/Speedway/COVERAGE_INFO.txt',4,icon,fanart)
+        addLink('[COLOR blue][B]Upcoming Live TV Coverage Information[/COLOR][/B]','http://metalkettle.co/Speedway/COVERAGE_INFO.txt',4,icon,fanart)
 
 def Coverage(url):
         text = open_url(url)
-        showText('[COLOR gold][B]Upcoming Coverage[/B][/COLOR]', text)
+        showText('[COLOR blue][B]Upcoming Coverage Information[/B][/COLOR]', text)
 
         
 def GetChans(url):
@@ -54,6 +54,7 @@ def PLAYLINK(url):
          
 def open_url(url):
         url += '?%d=%d' % (random.randint(1, 10000), random.randint(1, 10000))
+        print url
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
