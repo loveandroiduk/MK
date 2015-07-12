@@ -89,8 +89,8 @@ def SEARCH():
         GETMOVIES(url,name)
 
 def PLAYLINK(name,url,iconimage):
-    
-        link = open_url(url)
+    link = open_url(url)
+    if 'videomega' in link:    
         match=re.compile('hashkey=(.+?)">').findall(link)
         if len(match) == 0:
                 match=re.compile("hashkey=(.+?)'>").findall(link)
@@ -103,13 +103,10 @@ def PLAYLINK(name,url,iconimage):
                 link=response.read()
                 response.close()
                 match=re.compile('var ref="(.+?)"').findall(link)[0]
-                print match
                 videomega_url = 'http://videomega.tv/?ref='+match 
         else:
                 match=re.compile("javascript'\>ref='(.+?)'").findall(link)[0]
-                videomega_url = "http://videomega.tv/?ref=" + match
-                
-##RESOLVE##     
+                videomega_url = "http://videomega.tv/?ref=" + match                 
         url = 'http://videomega.tv/cdn.php?ref=%s' % match
         referer = videomega_url
         req = urllib2.Request(url)
@@ -120,16 +117,18 @@ def PLAYLINK(name,url,iconimage):
         response.close()        
         stream_url = re.compile('<source src="(.+?)" type="video/mp4"/>').findall(link)[0]
         stream_url = stream_url + '|User-Agent: Mozilla/5.0 (Linux; U; Android 4.1.2; en-gb; GT-I9100 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'
-##RESOLVE##
+
+    if 'openload' in link:
+         olurl=re.compile('<p><iframe src="(.+?)"').findall(link)[0]
+         link = open_url(olurl)
+         stream_url = re.compile('<source type="video/mp4" src="(.+?)">').findall(link)[0]
+    ok=True
+    liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
+    xbmc.Player ().play(stream_url, liz, False)
+
+
         
-        playlist = xbmc.PlayList(1)
-        playlist.clear()
-        listitem = xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=icon)
-        listitem.setInfo("Video", {"Title":name})
-        listitem.setProperty('mimetype', 'video/x-msvideo')
-        playlist.add(stream_url,listitem)
-        xbmcPlayer = xbmc.Player(xbmc.PLAYER_CORE_AUTO)
-        xbmcPlayer.play(playlist)
 
 def get_params():
         param=[]
