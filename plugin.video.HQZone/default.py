@@ -9,7 +9,7 @@ icon            = xbmc.translatePath(os.path.join('special://home/addons/' + add
 cookie_file     = os.path.join(os.path.join(datapath,''), 'hqzone.lwp')
 user            = selfAddon.getSetting('hqusername')
 passw           = selfAddon.getSetting('hqpassword')
-
+art             = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
 if user == '' or passw == '':
     if os.path.exists(cookie_file):
         try: os.remove(cookie_file)
@@ -49,12 +49,41 @@ def Index():
     vip=re.compile('<li><a href="(.+?)">VIP Streams</a>').findall(link)
     if len(vip)>0:
         vip=vip[0]
-        addDir('[COLOR gold]VIP[/COLOR] Streams','http://straighthost.com/billing/vip/vip.php',2,icon,fanart)
-        #addDir('[COLOR gold]VIP[/COLOR] VOD','url',4,icon,fanart)
-    addLink(' ','url',5,icon,fanart)
-    addLink('[COLOR blue]Twitter[/COLOR] Feed','url',100,icon,fanart)
-    addDir('HQZone Account Status','url',200,icon,fanart)
-    addDir('HQ Zone Support','url',300,icon,fanart)
+        addDir('[COLOR gold]VIP[/COLOR] [COLOR red]Streams[/COLOR]','http://straighthost.com/billing/vip/vip.php',2,art+'streams.gif',fanart)
+    addDir('#1 KODI Streaming addon #HQZone','url','',icon,fanart)
+    addDir('On [COLOR red]Demand[/COLOR]','http://straighthost.com/billing/vip/vod.php',4,art+'streams.gif',fanart)
+    addDir('#1 KODI Streaming addon #HQZone','url','',icon,fanart)
+    addDir('[COLOR red]Schedule[/COLOR] Events','http://hqzone.tv/forums/calendar.php?c=1&do=displayweek',52,art+'schedule.gif',fanart)
+    addLink('[COLOR red]How to become a VIP member[/COLOR]','Purchase VIP at HQZone.tv for all upcoming events'+'\n'+'1 month access $12.00 for one month 30 days access'+'\n'+'3 months access $35.00 for 3 months 90 days of access'+'\n'+'6 months access $75.00 for 6 months 182 days of access',302,art+'subscribe.gif',fanart)
+    addLink('[COLOR blue]Twitter[/COLOR] [COLOR red]Feed[/COLOR]','url',100,art+'social.gif',fanart)
+    addLink('[COLOR red]@Follow @HQZoneTv[/COLOR] for Big updates and Like us on Facebook','url','',art+'social.gif',fanart)
+    addDir('[COLOR red]HQZone[/COLOR] Account Status','url',200,icon,fanart)
+    addDir('[COLOR red]HQ Zone[/COLOR] Support','url',300,icon,fanart)
+    addLink('[COLOR red]Request[/COLOR] Zone','Visit Twitter or Website to request an event',302,icon,fanart)
+    addLink('How to get a [COLOR red]Refund[/COLOR]','To get a refund mention on Twitter'+'\n'+'or Visit Hqzone website'+'\n'+'Or email Hqzone@hotmail.com',302,icon,fanart)
+    
+
+def getschedule(url):
+    response = net().http_GET(url)
+    link = response.content
+    link = cleanHex(link)
+    link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('  ','')
+    match2=re.compile('''<h4 class="blockhead"><a href=".+?">([^<]+)</a></h4>''').findall(link)
+    if match2:
+        addLink('[COLOR orange]Week of '+match2[0]+'[/COLOR]','url',100,icon,fanart)
+    match=re.compile('''<h3><span class="blocksubhead dayname">([^<]+)</span><span class="daynum" style="cursor:pointer" onclick=".+?">([^<]+)</span>(.+?)</li></ul></li>''').findall(link)
+    for day,num,data in match:
+        addLink('[COLOR blue]'+day+' '+num+'[/COLOR]','url','',icon,fanart)
+        match2=re.compile('''<span class="eventtime">([^<]+)</span><a href=".+?" title=".+?>([^<]+)</a>''').findall(data)
+        for time,show in match2:
+            addLink(show+'  [COLOR yellow]'+time+'[/COLOR]','url',100,icon,fanart)
+        #print data
+    """for day,num in match:
+        addLink('[COLOR blue]'+day+' '+num+'[/COLOR]','url','',icon,fanart)
+        match2=re.compile('''<span class="eventtime">([^<]+)</span><a href=".+?" title=".+?>([^<]+)</a>''').findall(link)
+        for time,show in match2:
+            addLink(show+'  [COLOR yellow]'+time+'[/COLOR]','url',100,icon,fanart)"""
+
 
 def getchannels(url):
     vip = 0
@@ -76,7 +105,8 @@ def getchannels(url):
         chsplit = channel.split(':')   
         channel = '[COLOR blue]'+chsplit[0]+'[/COLOR]'+' '+chsplit[1]+chsplit[2]
         url = baseurl+url
-        addLink(channel,url,3,icon,fanart)
+        if 'Offline' not in channel:
+            addLink(channel,url,3,icon,fanart)
     for url,channel in match2:
         channel = channel + ':'+ ':'+ ':'+ ':'
         channel = channel.replace('</font>','').replace('Online','[COLOR limegreen]Online[/COLOR]').replace('Offline','[COLOR red]Offline[/COLOR]').replace('online','[COLOR limegreen]Online[/COLOR]').replace('offline','[COLOR red]Offline[/COLOR]')
@@ -84,7 +114,8 @@ def getchannels(url):
         chsplit = channel.split(':')   
         channel = '[COLOR blue]'+chsplit[0]+'[/COLOR]'+' '+chsplit[1]+chsplit[2]
         url = baseurl+url
-        addLink(channel,url,3,icon,fanart)
+        if 'Offline' not in channel:
+            addLink(channel,url,3,icon,fanart)
 
 def getstreams(url,name):
     setCookie('http://straighthost.com/billing/member')
@@ -102,6 +133,18 @@ def getstreams(url,name):
         xbmc.Player ().play(playable, liz, False)
     except:
         pass
+
+def playVod(name,url):
+    vurl=url.split('/vod/')
+    stream_url=vurl[0]+'/vod'
+    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+    playlist.clear()
+    playpath = 'mp4:'+vurl[1]
+    listitem = xbmcgui.ListItem(name)
+    listitem.setProperty('PlayPath', playpath);
+    playlist.add(stream_url,listitem)
+    xbmcPlayer = xbmc.Player()
+    xbmcPlayer.play(playlist)
 
 def setCookie(srDomain):
         html = net().http_GET(srDomain).content
@@ -148,16 +191,19 @@ def vod():
     link = response.content
     link = cleanHex(link)
     link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('  ','')
-    print link
     match=re.compile('<a href="(.+?)"></br><font color= "\#fff" size="\+1"><b>(.+?)</b>').findall(link)
     for url,channel in match:
-        channel = channel+'[COLOR red][I] - Coming Soon[/I][/COLOR]'
-        url = 'http://rarehost.net'+url
-        if not 'Movies' in channel:
-            if not 'TV' in channel:
-                addLink(channel,'url','1000',icon,fanart)
+       addDir(channel,'http://straighthost.com/billing/vip/'+channel.replace(' ','').lower()+'.rss',6,icon,fanart)
     
-
+def getvodstreams(url):
+    setCookie(url)
+    response = net().http_GET(url)
+    link = response.content
+    link = cleanHex(link)
+    link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('  ','')
+    match=re.compile('<item><title>([^<]+)</title><description>.+?</description><jwplayer:source file="([^"]+)" /></item>').findall(link)
+    for title,stream in match:
+       addLink(title,stream,51,icon,fanart)
 
 def addDir(name,url,mode,iconimage,fanart,description=''):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
@@ -182,7 +228,8 @@ def cleanHex(text):
         text = m.group(0)
         if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
         else: return unichr(int(text[2:-1])).encode('utf-8')
-    return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))
 
 def notification(title, message, ms, nart):
     xbmc.executebuiltin("XBMC.notification(" + title + "," + message + "," + ms + "," + nart + ")")
@@ -204,17 +251,19 @@ def showText(heading, text):
             pass
 
 def twitter():
+        import time
         text=''
         twit = 'http://twitrss.me/twitter_user_to_rss/?user=@HQZoneTv'
-        twit += '?%d' % (random.randint(1, 1000000000000000000000000000000000000000))
+        #twit += '?time=%d' % time.time()
         response = net().http_GET(twit)
         link = response.content
-        match=re.compile("<description><!\[CDATA\[(.+?)\]\]></description>.+?<pubDate>(.+?)</pubDate>",re.DOTALL).findall(link)
-        for status, dte in match:
-            status = cleanHex(status)
+        link=link.replace('[','').replace(']','')
+        match=re.compile('<title><.+?CDATA(.+?)></title>.+?<dc:creator><.+?CDATA(.+?)></dc:creator>.+?<pubDate>(.+?)</pubDate>',re.DOTALL).findall(link)
+        for status,author, dte in match:
+            #status = cleanHex(status)
             dte = '[COLOR blue][B]'+dte+'[/B][/COLOR]'
             dte = dte.replace('+0000','').replace('2014','').replace('2015','')
-            text = text+dte+'\n'+status+'\n'+'\n'
+            text = text+dte+'\n'+status+'\n'+author+'\n'+'\n'
         showText('[COLOR blue][B]@HQZoneTv[/B][/COLOR]', text)
         quit()
 
@@ -324,14 +373,15 @@ elif mode==2:getchannels(url)
 elif mode==3:getstreams(url,name)
 elif mode==4:vod()
 elif mode==5:deletecachefiles()
-
+elif mode==6:getvodstreams(url)
 elif mode==50:getmovies(url)
-elif mode==51:playmovies(name,url)
-
+elif mode==51:playVod(name,url)
+elif mode==52:getschedule(url)
 elif mode==100:twitter()
 elif mode==200:account()
 elif mode==300:support()
 elif mode==301:supportpop()
+elif mode==302:showText(name, url)
 
 
         
