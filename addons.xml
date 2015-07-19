@@ -456,6 +456,26 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.RUDOS"
+       name="RUDOS.tv"
+       version="1.0.0"
+       provider-name="RUDOS">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">RUDOS.tv</summary>
+    <description lang="en">Live streams, Video On Demand</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.spacetelescope" name="Space Telescope" version="0.0.6" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -498,6 +518,26 @@
   <extension point="xbmc.addon.metadata">
     <summary lang="en">SPEEDWAY KODI is an add-on full of various videos relating to all things Speedway from around the world.  It has been put  together by the fans, for the fans.  At no point has, nor will there be any fee required to  access this add- on.  In the spirit of the KODI community it will remain free of charge.</summary>
     <description lang="en">SPEEDWAY KODI is an add-on full of various videos relating to all things Speedway from around the world.  It has been put  together by the fans, for the fans.  At no point has, nor will there be any fee required to  access this add- on.  In the spirit of the KODI community it will remain free of charge.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.SportsDonkey"
+       name="Sports Donkey"
+       version="2.0.4"
+       provider-name="Sports Donkey">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">Sports Donkey</summary>
+    <description lang="en">Live streams, Video On Demand</description>
     <platform>all</platform>
   </extension>
 </addon>
