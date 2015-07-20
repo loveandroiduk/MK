@@ -75,8 +75,9 @@ def PLAYLINK(name,url,iconimage):
                 url=re.compile('src=\&quot\;(.+?)\&quot').findall(decodedlink)[0]
         except:
                 url=re.compile('<iframe src="(.+?)" frameborder').findall(link)[0]
+        utl = url.replace('/files/','/play/')
         link = open_url(url)
-        stream_url=re.compile('<source src="(.+?)"').findall(link)[0]
+        stream_url=re.compile('<source type="video/mp4"  src="(.+?)">').findall(link)[0]
         playlist = xbmc.PlayList(1)
         playlist.clear()
         listitem = xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=icon)
