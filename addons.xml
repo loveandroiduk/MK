@@ -504,7 +504,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.speedway" name="Speedway" version="1.0.5" provider-name="MetalKettle / @SpeedwayKodi">
+<addon id="plugin.video.speedway" name="SPEEDWAY PORTAL" version="1.0.7" provider-name="MetalKettle / @SpeedwayPortal">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -516,8 +516,8 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">SPEEDWAY KODI is an add-on full of various videos relating to all things Speedway from around the world.  It has been put  together by the fans, for the fans.  At no point has, nor will there be any fee required to  access this add- on.  In the spirit of the KODI community it will remain free of charge.</summary>
-    <description lang="en">SPEEDWAY KODI is an add-on full of various videos relating to all things Speedway from around the world.  It has been put  together by the fans, for the fans.  At no point has, nor will there be any fee required to  access this add- on.  In the spirit of the KODI community it will remain free of charge.</description>
+    <summary lang="en">SPEEDWAY PORTAL is an add-on full of various videos and podcasts relating to all things Speedway from around the world.  It has been put together by the fans, for the fans.  At no point has, nor will there be any fee required by the user to access SPEEDWAY PORTAL.  It will remain free of charge.</summary>
+    <description lang="en">SPEEDWAY PORTAL is an add-on full of various videos and podcasts relating to all things Speedway from around the world.  It has been put together by the fans, for the fans.  At no point has, nor will there be any fee required by the user to access SPEEDWAY PORTAL.  It will remain free of charge.</description>
     <platform>all</platform>
   </extension>
 </addon>

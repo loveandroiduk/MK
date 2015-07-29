@@ -8,7 +8,7 @@ fanart          = xbmc.translatePath(os.path.join('special://home/addons/' + add
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 def Index():
-        xbmc.Player().play('plugin://plugin.video.youtube/play/?video_id=L67n3Ye_Igg')
+        xbmc.Player().play('http://metalkettle.co/Speedway/INFO%20MOVIE.mp4')
         link=open_url('http://metalkettle.co/Speedway/Index.txt')	
 	match=re.compile('<title>(.+?)</title>.+?url>(.+?)</url>.+?thumb>(.+?)</thumb>',re.DOTALL).findall(link)
 	for name,url,iconimage in match:
@@ -16,12 +16,14 @@ def Index():
                 iconimage = iconimage.replace(' ','%20') 
                 url = url.replace(' ','%20')
                 addDir(name,url,1,iconimage,fanart)
+        addLink('[COLOR blue][B]News[/COLOR][/B]','http://metalkettle.co/Speedway/NEWS.txt',4,icon,fanart)
         addLink('[COLOR blue][B]Twitter Feed[/COLOR][/B]','url',2,icon,fanart)
         addLink('[COLOR blue][B]Upcoming Live TV Coverage Information[/COLOR][/B]','http://metalkettle.co/Speedway/COVERAGE_INFO.txt',4,icon,fanart)
 
-def Coverage(url):
+        
+def Coverage(url,name):
         text = open_url(url)
-        showText('[COLOR blue][B]Upcoming Coverage Information[/B][/COLOR]', text)
+        showText(name, text)
 
         
 def GetChans(url):
@@ -106,7 +108,7 @@ def showText(heading, text):
 
 def twitter():
         text = ''
-        twit = 'https://script.google.com/macros/s/AKfycbyBcUa5TlEQudk6Y_0o0ZubnmhGL_-b7Up8kQt11xgVwz3ErTo/exec?614121773160886272'
+        twit = 'https://script.google.com/macros/s/AKfycbyBcUa5TlEQudk6Y_0o0ZubnmhGL_-b7Up8kQt11xgVwz3ErTo/exec?625794194884444160'
         link = open_url(twit)
         link = link.replace('/n','')
         link = link.decode('utf-8').encode('utf-8').replace('&#39;','\'').replace('&#10;',' - ').replace('&#x2026;','')
@@ -115,7 +117,7 @@ def twitter():
             dte = dte[:-15]
             dte = '[COLOR blue][B]'+dte+'[/B][/COLOR]'
             text = text+dte+'\n'+status+'\n'+'\n'
-        showText('[COLOR blue][B]@SpeedwayKodi[/B][/COLOR]', text)
+        showText('[COLOR blue][B]@SpeedwayPortal[/B][/COLOR]', text)
 
                
 def addDir(name,url,mode,iconimage,fanart,description=''):
@@ -154,5 +156,5 @@ if mode==None or url==None or len(url)<1: Index()
 elif mode==1:GetChans(url)
 elif mode==2:twitter()
 elif mode==3:PLAYLINK(url)
-elif mode==4:Coverage(url)
+elif mode==4:Coverage(url,name)
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
