@@ -197,26 +197,6 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.filmdictator" name="Film Dictator" version="1.0.1" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon
   id="plugin.video.HaydarGames"
   version="1.0.1"
@@ -254,62 +234,6 @@
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Watch TV from S4U Media</summary>
     <description lang="en">Watch TV from S4U Media</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.HQZone"
-       name="HQ Zone Live Streams"
-       version="2.1.0"
-       provider-name="HQZone">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="1.1.0"/>
-	<import addon="script.module.beautifulsoup"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-    <summary lang="en">HQ Zone</summary>
-    <description lang="en">HQ Zone Live streams, Video On Demand, PPV + so much more, visit HQZone.tv to learn more. Don´t forget to follow us on Twitter @HQZoneTV.</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.HushamLists" name="Husham Lists" version="1.0.2" provider-name="Husham.com">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.xbmcswift2" version="2.4.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <language />
-    <platform>all</platform>
-    <website>http://www.husham.com/</website>
-    <source>http://www.husham.com/forum</source>
-    <forum>https://github.com/hmemar/husham.com</forum>
-    <email>website@husham.com</email>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-
-
-  </extension>
-</addon>
-
-<addon id="plugin.video.JoeNobody" name="JoeNobody YouTube Videos" version="1.0.1" provider-name="JoeNobody / MetalKettle">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -456,26 +380,6 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.RUDOS"
-       name="RUDOS.tv"
-       version="1.0.0"
-       provider-name="RUDOS">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="1.1.0"/>
-	<import addon="script.module.beautifulsoup"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-    <summary lang="en">RUDOS.tv</summary>
-    <description lang="en">Live streams, Video On Demand</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.spacetelescope" name="Space Telescope" version="0.0.6" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -486,58 +390,6 @@
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Videos and news releases from the Hubble Space Telescope project</summary>
     <description lang="en">Videos and news releases from the Hubble Space Telescope project</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.sparky" name="Sparkys Streams" version="2.0.0" provider-name="MetalKettle">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.speedway" name="SPEEDWAY PORTAL" version="1.0.7" provider-name="MetalKettle / @SpeedwayPortal">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">SPEEDWAY PORTAL is an add-on full of various videos and podcasts relating to all things Speedway from around the world.  It has been put together by the fans, for the fans.  At no point has, nor will there be any fee required by the user to access SPEEDWAY PORTAL.  It will remain free of charge.</summary>
-    <description lang="en">SPEEDWAY PORTAL is an add-on full of various videos and podcasts relating to all things Speedway from around the world.  It has been put together by the fans, for the fans.  At no point has, nor will there be any fee required by the user to access SPEEDWAY PORTAL.  It will remain free of charge.</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.SportsDonkey"
-       name="Sports Donkey"
-       version="2.0.4"
-       provider-name="Sports Donkey">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="1.1.0"/>
-	<import addon="script.module.beautifulsoup"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-    <summary lang="en">Sports Donkey</summary>
-    <description lang="en">Live streams, Video On Demand</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -577,6 +429,39 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.xctechs"
+	name="XCTechs"
+	version="1.2.8"
+	provider-name="xctechs.info">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.addon.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="5.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">XCTechs</summary>
+    <description lang="en">Love Teaching people step by step Guides, teaching in style</description>
+    <platform>all</platform>
+    <website>http://www.xctechs.info</website>
+  </extension>
+</addon>
+
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.5.1" provider-name="MetalKettle">
+	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
+		<info compressed="false">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml</info>
+		<checksum>http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install my Addons</summary>
+		<description>Download and install addons from MetalKettle</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="plugin.video.ukturk" name="UK Turk Live Streams" version="1.3.4" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -597,23 +482,151 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.xctechs"
-	name="XCTechs"
-	version="1.2.8"
-	provider-name="xctechs.info">
+<addon id="plugin.video.HushamLists" name="Husham Lists" version="1.0.2" provider-name="Husham.com">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.addon.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="5.0.0"/>
+    <import addon="script.module.xbmcswift2" version="2.4.0"/>
   </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
+  <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">XCTechs</summary>
-    <description lang="en">Love Teaching people step by step Guides, teaching in style</description>
+    <language />
     <platform>all</platform>
-    <website>http://www.xctechs.info</website>
+    <website>http://www.husham.com/</website>
+    <source>http://www.husham.com/forum</source>
+    <forum>https://github.com/hmemar/husham.com</forum>
+    <email>website@husham.com</email>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+
+
+  </extension>
+</addon>
+
+<addon id="plugin.video.JoeNobody" name="JoeNobody YouTube Videos" version="1.0.1" provider-name="JoeNobody / MetalKettle">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.filmdictator" name="Film Dictator" version="1.0.1" provider-name="MetalKettle">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.sparky" name="Sparkys Streams" version="2.0.0" provider-name="MetalKettle">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.HQZone"
+       name="HQ Zone Live Streams"
+       version="2.1.0"
+       provider-name="HQZone">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">HQ Zone</summary>
+    <description lang="en">HQ Zone Live streams, Video On Demand, PPV + so much more, visit HQZone.tv to learn more. Don´t forget to follow us on Twitter @HQZoneTV.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.RUDOS"
+       name="RUDOS.tv"
+       version="1.0.0"
+       provider-name="RUDOS">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">RUDOS.tv</summary>
+    <description lang="en">Live streams, Video On Demand</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.SportsDonkey"
+       name="Sports Donkey"
+       version="2.0.4"
+       provider-name="Sports Donkey">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">Sports Donkey</summary>
+    <description lang="en">Live streams, Video On Demand</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.speedway" name="SPEEDWAY PORTAL" version="1.0.7" provider-name="MetalKettle / @SpeedwayPortal">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">SPEEDWAY PORTAL is an add-on full of various videos and podcasts relating to all things Speedway from around the world.  It has been put together by the fans, for the fans.  At no point has, nor will there be any fee required by the user to access SPEEDWAY PORTAL.  It will remain free of charge.</summary>
+    <description lang="en">SPEEDWAY PORTAL is an add-on full of various videos and podcasts relating to all things Speedway from around the world.  It has been put together by the fans, for the fans.  At no point has, nor will there be any fee required by the user to access SPEEDWAY PORTAL.  It will remain free of charge.</description>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -637,16 +650,24 @@
   </extension>
 </addon>
 
-<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.5.1" provider-name="MetalKettle">
-	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
-		<info compressed="false">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml</info>
-		<checksum>http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install my Addons</summary>
-		<description>Download and install addons from MetalKettle</description>
-		<platform>all</platform>
-	</extension>
+<addon id="plugin.video.kodistreamss"
+       name="KodiStreams.tv"
+       version="1.0.2"
+       provider-name="MetalKettle">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.t0mm0.common" version="1.1.0"/>
+		<import addon="script.module.beautifulsoup"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+    <summary lang="en">Premium sports streaming service</summary>
+    <description lang="en"></description>
+    <disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+  </extension>
 </addon>
 </addons>
