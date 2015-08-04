@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.footballhighlightssubreddit" version="1.0.0" name="Sparkys Football Highlights" provider-name="surmac">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Video player for /r/footballhighlights</summary>
+        <description>Watch review shows and highlights from reddit.com/r/footballhighlights. Currently supports videos hosted on Google Drive, Dailymotion, YouTube, and CloudyVideos.  Original code by Surmac.</description>
+        <platform>all</platform>
+    </extension>
+</addon>
+
