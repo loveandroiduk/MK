@@ -124,8 +124,8 @@ def getstreams(url,name):
     link = cleanHex(link)
     link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('  ','')
     swf='http://p.jwpcdn.com/6/11/jwplayer.flash.swf'
-    strurl=re.compile("file: '(.+?)',").findall(link)[0]
-    playable = strurl+' swfUrl='+swf+' pageUrl='+url+' live=true timeout=20 token=WY846p1E1g15W7s'
+    strurl=re.compile(':"(.+?)",').findall(link)[0]
+    playable = strurl#+' swfUrl='+swf+' pageUrl='+url+' live=true timeout=20 token=WY846p1E1g15W7s'
     ok=True
     liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)

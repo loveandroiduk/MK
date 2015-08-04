@@ -274,7 +274,7 @@
 
 <addon id="plugin.video.HQZone"
        name="HQ Zone Live Streams"
-       version="2.1.0"
+       version="2.1.1"
        provider-name="HQZone">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
