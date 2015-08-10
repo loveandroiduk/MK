@@ -8,11 +8,10 @@ import xbmcgui
 import xbmcplugin
 import xbmcaddon
 import os
+import urlresolver
 
 from resources.lib.common_addon import Addon
 from resources.lib import gdrive
-from resources.lib import dailymotion
-from resources.lib import youtube
 from resources.lib import cloudyvideos
 
 
@@ -106,6 +105,7 @@ def display_posts(json_data, to_filter, reddit_base_url):
 
 
 subreddit_base_url = 'http://www.reddit.com/r/footballhighlights/.json?after='
+subreddit_base_url2 = 'http://www.reddit.com/r/SportDocumentaries/.json?after='
 
 re_video = re.compile(r'<a href="(?:(https?://(?:www.)?(?:docs|drive).google.com/file/d/[\w-]+/(?:preview|edit))[^#]*?|'
 									'https?://(?:www.)?dailymotion.com/video/([\w-]+).*?|'
@@ -114,34 +114,29 @@ re_video = re.compile(r'<a href="(?:(https?://(?:www.)?(?:docs|drive).google.com
 
 
 if mode is None:
-	#url = build_url({'mode': 'all_posts'})
-	#li = xbmcgui.ListItem('All Posts', iconImage='DefaultFolder.png')
+        #url = build_url({'mode': 'docs'})
+	#li = xbmcgui.ListItem('Football Documentaries', iconImage='DefaultFolder.png')
+	#li.setProperty('fanart_image', my_addon.getAddonInfo('fanart'))
 	#xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True)
+	
 	url = build_url({'mode': 'filtered_posts'})
 	li = xbmcgui.ListItem('All Videos', iconImage=art+'vod.JPG')
 	li.setProperty('fanart_image', my_addon.getAddonInfo('fanart'))
 	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True)
+	
 	if saved_searches:
 		for s in saved_searches:
 			url = build_url({'mode': 'saved_search', 'query': s})
-                        icon = art+'search.JPG'
-                        if s == 'BBC Match of the Day':
-                                icon = art+'motd.PNG'
-                        if s == 'UEFA Champions League':
-                                icon = art+'champ.JPG'
-                        if s == 'Monday Night Football':
-                                icon = art+'mnf.PNG'
-                        if s == 'Revista de La Liga':
-                                icon = art+'liga.JPG'
+                        icon = art+s+'.png'
 			li = xbmcgui.ListItem(s, iconImage=icon)
 			li.setProperty('fanart_image', my_addon.getAddonInfo('fanart'))
 			xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True)
 	xbmc.executebuiltin('Container.SetViewMode(50)')
 	xbmcplugin.endOfDirectory(addon_handle)
 
-#elif mode[0] == 'all_posts':
-#	json_data = get_reddit_json('http://www.reddit.com/r/footballhighlights/.json')
-#	display_posts(json_data, 'false', subreddit_base_url)
+elif mode[0] == 'docs':
+	json_data = get_reddit_json('http://www.reddit.com/r/SportDocumentaries/.json')
+	display_posts(json_data, 'false', subreddit_base_url2)
 
 elif mode[0] == 'filtered_posts':
 	json_data = get_reddit_json('http://www.reddit.com/r/footballhighlights/.json')
@@ -164,27 +159,31 @@ elif mode[0] == 'folder':
 		title = re.sub(r'<.*?>', '', v[4])
 		if v[0]:
 			id = v[0]
+			print id
 			try:
 				url = gdrive.get_quality_video_link(max_video_quality, id, DASH)
 			except:
-				title = '[COLOR red]Unavailable[/COLOR]: ' + title
+				title = '[COLOR red]GD Unavailable[/COLOR]: ' + title
 				url = ''
 		elif v[1]:
 			id = v[1]
+			print id
 			try:
-				url = dailymotion.get_quality_video_link(max_video_quality, id)
+				url = urlresolver.HostedMediaFile(id).resolve()
 			except:
-				title = '[COLOR red]Unavailable[/COLOR]: ' + title
+				title = '[COLOR red]DM Unavailable[/COLOR]: ' + title
 				url = ''
 		elif v[2]:
 			id = v[2]
+			print id
 			try:
-				url = youtube.get_quality_video_link(max_video_quality, id, DASH)
+				url = urlresolver.HostedMediaFile(id).resolve()
 			except:
-				title = '[COLOR red]Unavailable[/COLOR]: ' + title
+				title = '[COLOR red]YT Unavailable[/COLOR]: ' + title
 				url = ''
 		elif v[3]:
 			id = v[3]
+			print id
 			if '/embed-' in id:
 				continue
 			try:
