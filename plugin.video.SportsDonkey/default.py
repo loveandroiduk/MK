@@ -13,32 +13,31 @@ cookie_file     = os.path.join(os.path.join(datapath,''), 'SD.lwp')
 cookie_file2    = os.path.join(os.path.join(datapath,''), 'DS.lwp')
 net             = mknet.Net()
 
+
+
 if user == '' or passw == '' or user == 'Droidsticks':
     if os.path.exists(cookie_file):
         os.remove(cookie_file)
     try:
-        AddonList = ['plugin.video.aswizard', 'plugin.video.UpdateWizard']
-        for addons in AddonList:
-            wizardpath = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/'+addons, 'settings.xml'))
-            if os.path.exists(wizardpath):
-                wizset = open(wizardpath, 'r')
-                wizlog = wizset.read()
-                wizuser = re.compile('<setting id="dsusername" value="(.+?)"').findall(wizlog)[0]
-                wizpass = re.compile('<setting id="dspassword" value="(.+?)"').findall(wizlog)[0]
-                amemberurl = 'http://dswizard.co/amember/member'
-                hqpass = 'http://dswizard.co/amember/content/f/id/8/'
-                html = net.http_GET(amemberurl).content
-                r = re.findall(r'<input type="hidden" name="(.+?)" value="(.+?)" />', html, re.I)
-                post_data = {}
-                post_data['amember_login'] = wizuser
-                post_data['amember_pass'] = wizpass
-                for name, value in r:
-                    post_data[name] = value
-                    net.http_GET(amemberurl)
-                    net.http_POST(amemberurl,post_data)
-                    net.save_cookies(cookie_file)
-                    net.set_cookies(cookie_file)
-                    response = net.http_GET(amemberurl)
+        wizardpath = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.aswizard', 'settings.xml'))
+        if os.path.exists(wizardpath):
+            wizlog = open(wizardpath, 'r').read()
+            wizuser = re.compile('<setting id="dsusername" value="(.+?)"').findall(wizlog)[0]
+            wizpass = re.compile('<setting id="dspassword" value="(.+?)"').findall(wizlog)[0]
+            amemberurl = 'http://dswizard.co/amember/member'
+            hqpass = 'http://dswizard.co/amember/content/f/id/8/'
+            html = net.http_GET(amemberurl).content
+            r = re.findall(r'<input type="hidden" name="(.+?)" value="(.+?)" />', html, re.I)
+            post_data = {}
+            post_data['amember_login'] = wizuser
+            post_data['amember_pass'] = wizpass
+            for name, value in r:
+                post_data[name] = value
+                net.http_GET(amemberurl)
+                net.http_POST(amemberurl,post_data)
+                net.save_cookies(cookie_file)
+                net.set_cookies(cookie_file)
+                response = net.http_GET(amemberurl)
         if 'Logged in as' in response.content:
                 response = net.http_GET(hqpass)
                 link = response.content
@@ -128,12 +127,10 @@ def playstream(url,name):
     response = net.http_GET(url)
     link = response.content
     link = cleanHex(link)
-    strurl=re.compile("file: '(.+?)',").findall(link)[0]
+    strurl=re.compile('src="(.+?)" />').findall(link)[2]
     ok=True
     liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-    if 'rtmp' in strurl:
-        strurl=strurl + ' live=true timeout=20'
     xbmc.Player ().play(strurl, liz, False)
        
 def vod(url):

@@ -1,1 +1,327 @@
-exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),base64.b64decode("JycnCgk4NSBiNiBlMAoJOWYgKGMpIDExMCA5NwoKCTY3IDQ2IGM3IDExZSBiYzogNmYgMTIwIDg3IDY5IDE1Lzk2IGRmCgk2OSBmZSA2IDEwMyA0OSA2IGE1IDQ3IDVhIDJmIGYyIGE0IDliCgk2IDExZCBhZSA5OCwgZjAgNzQgMyA0OSA2IDJmLCA5NgoJKDEzMSAxMWMgZWQpIDZlIGZiIDc0LgoKCTY3IDQ2IGM3IDhlIGM4IDYgMTEzIGI4IDY5IDYxIGJlIGY0LAoJMTJjIGNmIDEyNiBjMjsgZGQgMTBiIDYgZDYgYmIgNDkKCTcwIDk2IGRhIDEyYiBhMiA5NCBkOS4gIDEyMSA2CglhNSA0NyA1YSAyZiA2YiAxMGEgNzcuCgoJMTI4IGU4IGM1IGIxIGEgMTFiIDQ5IDYgYTUgNDcgNWEgMmYKCTEwNiAxMTQgMTBkIDQ2LiAgOGMgZTMsIDEyNSA8MWE6Ly8xMzAuMTJmLmVhL2IzLz4uCicnJwoKMTggNTcKMTggMjYKMTggZTkKMTggMzkKMTggN2MKMTggMTMzCjE4IDg2CgojOWUgZTUgZDIgLSBlMiA2YiAxMTUgOTEgMTUgYTguCjg2LjVkKDYwKQoKMTAgNDQoMTMzLjJkKToKCScnJ2EyIDJkIDEwIGI4IGZhIDc5IDNhJycnCgkxNiA5OSgxMjcpOgoJCTc4ICc3OScKCjEwIDUzOgoJJycnCgk2NyAxMCAxMDUgOjEyNDpgMTMzYCAxNSBjMSA4YSAxMTggMTI5IDggMTA4IDFhCgkzYSBmZiBlYiAxMGYgNDkgMWIsIGNlLCAyNiAyIDE1IAoJYTcgMTkuCgkKCWQxOjoKCQoJCTdmIDk3Ljg1LmEwIDE4IDUzCgkJYTAgPSA1MygpCgkJNSA9IGEwLjNiKCcxYTovLzExZi5lYScpCgkJZjggNS5mCgknJycKCQoJNWMgPSA1Ny44MigpCgkyOSA9IDExMQoJMTQgPSAnYzYnCgkyNSA9IDZkCgkKCQoJMTYgMTMyKDEyNywgND0nJywgMWQ9JycsIGI9JycsIAoJCQkJIDI4PTZkKToKCQknJycKCQkyYToKCQkJNCAoMjQpOiA4MyA4MSA4IGEgNGYgOCBiZSA2MyA4IDY2IDE1IDVmCgkJCTFiIDguCgkJCQoJCQkxZCAoMjQpOiA5YyA3NSAoODkuIAoJCQlgYCcxYTovLzY0OjRhQDcyLmY1OmMzJ2BgKQoJCQkKCQkJYiAoMjQpOiA3YiA4IDU5IGYyIDYgNmEgNGUgNTUuIDhjIGUzIAoJCQliZiA2IDEwIDYxIDU5IGEgMzIgNjQgOTUgKGU2KQoJCQkKCQkJMjggKDY1KTogOWUgYGAxZmBgIDggYzUgM2YgNTUgYjcgZGMgOAoJCQk2IGI2IDEyMiA2YiBhMSAzYS4KCQknJycKCQkzOCA0OgoJCQkxMjcuNDIoNCkKCQkzOCAxZDoKCQkJMTI3LjU4KDFkKQoJCTM4IGI6CgkJCTEyNy4yYyhiKQoJCTEyNy4yNSA9IDI4CgkJMTI3LjEyKCkKCQkKCQoJMTYgNDIoMTI3LCA0KToKCQknJycKCQk5ZSA2IDhkIDRmIDE1IDNlIDggNjYgMWIgN2YgNjkgMzggNjkgZGUuCgkJCgkJMjI6CgkJCTQgKDI0KTogODMgODEgOCBhIDRmIDggYmUgNjMgOCA2NiAxNSA1ZgoJCQkxYiA4LgoJCScnJwoJCTNlOgoJCQkxMjcuNWMuNjYoNCwgMmU9MWYpCgkJCTEyNy4xMigpCgkJCTc4IDFmCgkJNDE6CgkJCTc4IDZkCgkJCgkKCTE2IDhmKDEyNyk6CgkJJycnMTEgYTIgZSAxMzQgYTEgOGQgMTMgOWIgZjMuJycnCgkJNzggMTI3LjVjLmFkCgoKCTE2IDdlKDEyNywgNCk6CgkJJycnCgkJMTAxIDFiIDggYSA0Zi4KCQkKCQkyMjoKCQkJNCAoMjQpOiA4MyA4MSA4IGEgNGYgOCA1ZiAxYiA4LgoJCScnJwoJCTEyNy41Yy41Zig0LCAyZT0xZikJCQoKCQkKCTE2IDU4KDEyNywgMWQpOgoJCScnJwoJCTIyOgoJCQkxZCAoMjQpOiA5YyA3NSAoODkuIAoJCQlgYCcxYTovLzY0OjRhQDcyLmY1OmMzJ2BgKQoJCScnJwoJCTEyNy4yOSA9IDFkCgkJMTI3LjEyKCkKCgkJCgkxNiBhNigxMjcpOgoJCScnJzExIDViIDEzNCAxZCA3Ny4nJycKCQk3OCAxMjcuMjkKCQkKCQkKCTE2IDJjKDEyNywgYik6CgkJJycnCgkJMjI6CgkJCWIgKDI0KTogN2IgOCA1OSBmMiA2IDZhIDRlIDU1LgoJCScnJwoJCTEyNy4xNCA9IGIKCgkJCgkxNiA3MygxMjcpOgoJCScnJzExIDY0IDk1IDViLicnJwoJCTc4IDEyNy4xNAoKCgkxNiAxMigxMjcpOgoJCScnJwoJCWYxIDE1IGI5IGEgMTIzIDQwIDggYmUgNjMgOWIgYTEgZTcgZjkgOCAKCQk6YjI6YDEzMy4zM2AuCgkJJycnCgkJMzggMTI3LjI1OgoJCQkxYSA9IDEzMy40Myg5ZD0xKQoJCWJkOgoJCQkxYSA9IDEzMy40MygpCgkJCQoJCTM4IDEyNy4yOToKCQkJNDAgPSAxMzMuM2MoMTMzLjIxKDEyNy41YyksCgkJCQkJCQkJCQkgIDEzMy43ZCh7JzFhJzogCgkJCQkJCQkJCQkJCQkJCQkxMjcuMjl9KSwgCgkJCQkJCQkJCQkgIDEzMy4xYygpLAoJCQkJCQkJCQkJICAxYSkKCQkKCQliZDoKCQkJNDAgPSAxMzMuM2MoMTMzLjIxKDEyNy41YyksCgkJCQkJCQkJCQkgIDEzMy4xYygpLAoJCQkJCQkJCQkJICAxYSkKCQkxMzMuNzEoNDApCgkJCgoJMTYgM2IoMTI3LCAyMCwgMD17fSwgMj0xZik6CgkJJycnCgkJMzQgOGEgM2YgNTEgZC4KCQkKCQkyMjoKCQkJMjAgKDI0KTogNTAgNmMgOCA1MS4KCQkJCgkJMmE6CgkJCTAgKDNkKTogYTIgZSAxZSA2ZSAwIDZmIDRkIDVlCgkJCTggODQgOCA2IGQuICg4OS4gYGB7JzEwZS02Mic6ICczNid9YGApCgoJCQkyICg2NSk6IDhjIGBgMWZgYCAoMzIpLCAzZSA4IDU5IDI2IAoJCQkyLgoJCQkKCQkxMToKCQkJY2IgOjEwOmA3YCAyYiAxMzQgMCAxNSA0YyAKCQkJNGItMTMgNDggNiAzMCAxNSA2IDMwIGYuCgkJJycnCgkJNzggMTI3LjUyKDIwLCAwPTAsIDI9MikKCQkKCgkxNiA1NigxMjcsIDIwLCA5LCAwPXt9LCAyPTFmKToKCQknJycKCQkzNCA4YSAzZiAzNSBkLgoJCQoJCTIyOgoJCQkyMCAoMjQpOiA1MCA2YyA4IDM1LgoJCQkKCQkJOSAoM2QpOiBhMiBlIDQ5IDgwIDdhIDggMzUuCgkJCQoJCTJhOgoJCQkwICgzZCk6IGEyIGUgMWUgNmUgMCA2ZiA0ZCA1ZQoJCQk4IDg0IDggNiBkLiAoODkuIGBgeycxMGUtNjInOiAnMzYnfWBgKQoKCQkJMiAoNjUpOiA4YyBgYDFmYGAgKDMyKSwgM2UgOCA1OSAyNiAKCQkJMi4KCgkJMTE6CgkJCWNiIDoxMDpgN2AgMmIgMTM0IDAgMTUgNGMgCgkJCTRiLTEzIDQ4IDYgMzAgMTUgNiAzMCBmLgoJCScnJwoJCTc4IDEyNy41MigyMCwgOSwgMD0wLAoJCQkJCQkgICAyPTIpCgoJCgkxNiA1NCgxMjcsIDIwLCAwPXt9KToKCQknJycKCQkzNCA4YSAzZiA3OSBkLgoJCQoJCTIyOgoJCQkyMCAoMjQpOiA1MCA2YyA4IDUxLgoJCQoJCTJhOgoJCQkwICgzZCk6IGEyIGUgMWUgNmUgMCA2ZiA0ZCA1ZQoJCQk4IDg0IDggNiBkLiAoODkuIGBgeycxMGUtNjInOiAnMzYnfWBgKQoJCQoJCTExOgoJCQljYiA6MTA6YDdgIDJiIDEzNCAwIDE1IDRjIAoJCQk0Yi0xMyA0OCA2IDMwLgoJCScnJwoJCTI3ID0gNDQoMjApCgkJMjcuMTcoJzZhLTRlJywgMTI3LjE0KQoJCTZiIDExOSwgMTEyIGM4IDAuOTMoKToKCQkJMjcuMTcoMTE5LCAxMTIpCgkJNSA9IDEzMy4zMygyNykKCQk3OCA3KDUpCgoKCTE2IDUyKDEyNywgMjAsIDk9e30sIDA9e30sIDI9MWYpOgoJCScnJwoJCTM0IDhhIDNmIDUxIDk2IDM1IGQuCgkJCgkJMjI6CgkJCTIwICgyNCk6IDUwIDZjIDggNTEgOTYgMzUuCgkJCQoJCQk5ICgzZCk6IGEyIGUgNDkgODAgN2EgOCAzNS4gOGMgMTA0LCA2IAoJCQlkIDYxIGJlIGEgNTEsIDM4IDY5IGM5IDgwIDdhIDY5IDYxIGJlIGEgMzUuCgkJCQoJCTJhOgoJCQkwICgzZCk6IGEyIGUgMWUgNmUgMCA2ZiA0ZCA1ZQoJCQk4IDg0IDggNiBkLiAoODkuIGBgeycxMGUtNjInOiAnMzYnfWBgKQoKCQkJMiAoNjUpOiA4YyBgYDFmYGAgKDMyKSwgM2UgOCA1OSAyNiAKCQkJMi4KCgkJMTE6CgkJCWNiIDoxMDpgN2AgMmIgMTM0IDAgMTUgNGMgCgkJCTRiLTEzIDQ4IDYgMzAgMTUgNiAzMCBmLgoJCScnJwoJCTE5ID0gJycKCQkyNyA9IDEzMy4yZCgyMCkKCQkzOCA5OgoJCQk5ID0gN2MuYWMoOSkKCQkJMjcgPSAxMzMuMmQoMjAsIDkpCgkJMjcuMTcoJzZhLTRlJywgMTI3LjE0KQoJCTZiIDExOSwgMTEyIGM4IDAuOTMoKToKCQkJMjcuMTcoMTE5LCAxMTIpCgkJMzggMjoKCQkJMjcuMTcoJ2VmLWI1JywgJzI2JykKCQk1ID0gMTMzLjMzKDI3KQoJCTc4IDcoNSkKCgoKMTAgNzoKCScnJwoJNjcgMTAgOWEgYSBhMyA3ZiA4YSAzZiBkLgoJCgk1MCBmIGM3IGI0IDE1IGZjIGQ1IGM3IDExNyA4IGFmIGUxIDY5IDgKCTc2LgoJCgkuLiBjYzo6CgkJOjg4OmA1My4zYmAsIDo4ODpgNTMuNTRgIDE1IDo4ODpgNTMuNTZgIAoJJycnCgkKCWYgPSAnJwoJJycnNzYgZDQgNWIgMTM0IDYgMTFhIDQ5IDYgY2QuJycnCgkKCQoJMTYgMTMyKDEyNywgNSk6CgkJJycnCgkJMjI6CgkJCTUgKDoxMDpgYTkuZGJgKTogNTAgMmIgNjggOWIgYSAxMTYKCQkJOCA6YjI6YDEzMy4zM2AuCgkJJycnCgkJMTI3LjM3ID0gNQoJCTMxID0gNS5jYSgpCgkJM2U6CgkJCTM4IDUuMFsnZi0xOSddLjEwMCgpID09ICcyNic6CgkJCQkzMSA9IDI2LjhiKGQ3PTM5LjM5KDMxKSkuY2EoKQoJCTQxOgoJCQk0YQoJCQoJCTNlOgoJCQkyMyA9IDUuMFsnZi0xMDcnXQoJCQkzOCAnNDU9JyBjOCAyMzoKCQkJCTE5ID0gMjMuZjcoJzQ1PScpWy0xXQoJCTQxOgoJCQk0YQoKCQkxMmEgPSBlOS5lYygnPDRiXDEyZCsxYS1mZD0iZDgtMTA5IlwxMmQrZj0iKD86Lis/KTsnICsKCQkJCQkgICdcMTJkKzQ1PSguKz8pIicsIDMxLCBlOS45MikKCQkzOCAxMmE6CgkJCTE5ID0gMTJhLjEwMigxKSAKCQkJCSAgIAoJCTNlOgoJCQkzMSA9IGQwKDMxLCAxOSkKCQk0MToKCQkJNGEKCQkJCgkJMTI3LmYgPSAzMQoJCgkKCTE2IDkwKDEyNyk6CgkJJycnMTEgYSAxMGMgNDkgMCA2OCA5YiA2IGVlLicnJwoJCTc4IDEyNy4zNy5iNygpLjAKCQoJCQoJMTYgZDMoMTI3KToKCQknJycKCQlmNiA2IDZjIDQ5IDYgYjAgYWIsIGMwIDYzIDggYWEgMzggCgkJYSBiYSAxMmUgYzQuCgkJJycnCgkJNzggMTI3LjM3LmU0KCk=")))(lambda a,b:b[int("0x"+a.group(1),16)],"headers|1|compression|3|cookie_file|response|the|HttpResponse|to|form_data|a|user_agent|C|request|dictionary|content|class|Returns|_update_opener|information|_user_agent|and|def|add_header|import|encoding|http|cookies|HTTPBasicAuthHandler|proxy|describing|True|url|HTTPCookieProcessor|Args|content_type|str|_http_debug|gzip|req|http_debug|_proxy|Kwargs|object|set_user_agent|Request|ignore_discard|License|page|html|default|urlopen|Perform|POST|testing|_response|if|StringIO|requests|http_GET|build_opener|dict|try|HTTP|opener|except|set_cookies|HTTPHandler|HeadRequest|charset|program|General|about|of|pass|meta|other|would|Agent|file|The|GET|_fetch|Net|http_HEAD|header|http_POST|cookielib|set_proxy|use|Public|string|_cj|setdefaulttimeout|like|save|60|will|Test|used|user|bool|load|This|returned|it|User|for|URL|False|any|you|MERCHANTABILITY|install_opener|example|get_user_agent|version|setting|Unicode|details|return|HEAD|data|String|urllib|ProxyHandler|save_cookies|from|form|path|LWPCookieJar|Full|add|common|socket|redistribute|meth|eg|an|GzipFile|If|cookie|distributed|get_cookies|get_headers|connections|IGNORECASE|items|PARTICULAR|agent|or|t0mm0|Foundation|get_method|represents|by|Proxy|debuglevel|Set|Copyright|net|all|A|resoponse|published|GNU|get_proxy|character|Putlocker|mimetools|determine|retrieved|urlencode|_cookies|Software|properly|resource|received|func|licenses|examined|Encoding|XBMC|info|that|installs|redirect|warranty|software|else|be|supplied|commonly|provides|WARRANTY|1234|followed|have|xbmckodi|is|in|contains|read|An|seealso|reposne|proxies|WITHOUT|unicode|Example|timeout|get_url|encoded|attempt|implied|fileobj|Content|PURPOSE|FITNESS|Message|written|without|exists|modify|Module|encode|Useful|not|geturl|Global|chrome|future|should|re|org|taking|search|option|server|Accept|either|Builds|as|domain|useful|com|Return|split|print|calls|sends|later|every|equiv|under|while|lower|Saves|group|terms|empty|wraps|along|type|make|Type|more|even|List|this|X|care|2011|None|v|hope|with|slow|call|made|easy|k|body|copy|your|Free|free|xbmc|can|See|log|new|mod|see|ANY|self|You|way|r|FOR|but|s|was|gnu|www|at|__init__|urllib2|containing".split("|")))
+'''
+    common XBMC Module
+    Copyright (C) 2011 t0mm0
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+'''
+
+import cookielib
+import gzip
+import re
+import StringIO
+import urllib
+import urllib2
+import socket
+
+#Set Global timeout - Useful for slow connections and Putlocker.
+socket.setdefaulttimeout(90)
+
+class HeadRequest(urllib2.Request):
+    '''A Request class that sends HEAD requests'''
+    def get_method(self):
+        return 'HEAD'
+
+class Net:
+    '''
+    This class wraps :mod:`urllib2` and provides an easy way to make http
+    requests while taking care of cookies, proxies, gzip compression and 
+    character encoding.
+    
+    Example::
+    
+        from t0mm0.common.net import Net
+        net = Net()
+        response = net.http_GET('http://xbmc.org')
+        print response.content
+    '''
+    
+    _cj = cookielib.LWPCookieJar()
+    _proxy = None
+    _user_agent = 'xbmckodi'
+    _http_debug = False
+    
+    
+    def __init__(self, cookie_file='', proxy='', user_agent='', 
+                 http_debug=False):
+        '''
+        Kwargs:
+            cookie_file (str): Full path to a file to be used to load and save
+            cookies to.
+            
+            proxy (str): Proxy setting (eg. 
+            ``'http://user:pass@example.com:1234'``)
+            
+            user_agent (str): String to use as the User Agent header. If not 
+            supplied the class will use a default user agent (chrome)
+            
+            http_debug (bool): Set ``True`` to have HTTP header info written to
+            the XBMC log for all requests.
+        '''
+        if cookie_file:
+            self.set_cookies(cookie_file)
+        if proxy:
+            self.set_proxy(proxy)
+        if user_agent:
+            self.set_user_agent(user_agent)
+        self._http_debug = http_debug
+        self._update_opener()
+        
+    
+    def set_cookies(self, cookie_file):
+        '''
+        Set the cookie file and try to load cookies from it if it exists.
+        
+        Args:
+            cookie_file (str): Full path to a file to be used to load and save
+            cookies to.
+        '''
+        try:
+            self._cj.load(cookie_file, ignore_discard=True)
+            self._update_opener()
+            return True
+        except:
+            return False
+        
+    
+    def get_cookies(self):
+        '''Returns A dictionary containing all cookie information by domain.'''
+        return self._cj._cookies
+
+
+    def save_cookies(self, cookie_file):
+        '''
+        Saves cookies to a file.
+        
+        Args:
+            cookie_file (str): Full path to a file to save cookies to.
+        '''
+        self._cj.save(cookie_file, ignore_discard=True)        
+
+        
+    def set_proxy(self, proxy):
+        '''
+        Args:
+            proxy (str): Proxy setting (eg. 
+            ``'http://user:pass@example.com:1234'``)
+        '''
+        self._proxy = proxy
+        self._update_opener()
+
+        
+    def get_proxy(self):
+        '''Returns string containing proxy details.'''
+        return self._proxy
+        
+        
+    def set_user_agent(self, user_agent):
+        '''
+        Args:
+            user_agent (str): String to use as the User Agent header.
+        '''
+        self._user_agent = user_agent
+
+        
+    def get_user_agent(self):
+        '''Returns user agent string.'''
+        return self._user_agent
+
+
+    def _update_opener(self):
+        '''
+        Builds and installs a new opener to be used by all future calls to 
+        :func:`urllib2.urlopen`.
+        '''
+        if self._http_debug:
+            http = urllib2.HTTPHandler(debuglevel=1)
+        else:
+            http = urllib2.HTTPHandler()
+            
+        if self._proxy:
+            opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self._cj),
+                                          urllib2.ProxyHandler({'http': 
+                                                                self._proxy}), 
+                                          urllib2.HTTPBasicAuthHandler(),
+                                          http)
+        
+        else:
+            opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self._cj),
+                                          urllib2.HTTPBasicAuthHandler(),
+                                          http)
+        urllib2.install_opener(opener)
+        
+
+    def http_GET(self, url, headers={}, compression=True):
+        '''
+        Perform an HTTP GET request.
+        
+        Args:
+            url (str): The URL to GET.
+            
+        Kwargs:
+            headers (dict): A dictionary describing any headers you would like
+            to add to the request. (eg. ``{'X-Test': 'testing'}``)
+
+            compression (bool): If ``True`` (default), try to use gzip 
+            compression.
+            
+        Returns:
+            An :class:`HttpResponse` object containing headers and other 
+            meta-information about the page and the page content.
+        '''
+        return self._fetch(url, headers=headers, compression=compression)
+        
+
+    def http_POST(self, url, form_data, headers={}, compression=True):
+        '''
+        Perform an HTTP POST request.
+        
+        Args:
+            url (str): The URL to POST.
+            
+            form_data (dict): A dictionary of form data to POST.
+            
+        Kwargs:
+            headers (dict): A dictionary describing any headers you would like
+            to add to the request. (eg. ``{'X-Test': 'testing'}``)
+
+            compression (bool): If ``True`` (default), try to use gzip 
+            compression.
+
+        Returns:
+            An :class:`HttpResponse` object containing headers and other 
+            meta-information about the page and the page content.
+        '''
+        return self._fetch(url, form_data, headers=headers,
+                           compression=compression)
+
+    
+    def http_HEAD(self, url, headers={}):
+        '''
+        Perform an HTTP HEAD request.
+        
+        Args:
+            url (str): The URL to GET.
+        
+        Kwargs:
+            headers (dict): A dictionary describing any headers you would like
+            to add to the request. (eg. ``{'X-Test': 'testing'}``)
+        
+        Returns:
+            An :class:`HttpResponse` object containing headers and other 
+            meta-information about the page.
+        '''
+        req = HeadRequest(url)
+        req.add_header('User-Agent', self._user_agent)
+        for k, v in headers.items():
+            req.add_header(k, v)
+        response = urllib2.urlopen(req)
+        return HttpResponse(response)
+
+
+    def _fetch(self, url, form_data={}, headers={}, compression=True):
+        '''
+        Perform an HTTP GET or POST request.
+        
+        Args:
+            url (str): The URL to GET or POST.
+            
+            form_data (dict): A dictionary of form data to POST. If empty, the 
+            request will be a GET, if it contains form data it will be a POST.
+            
+        Kwargs:
+            headers (dict): A dictionary describing any headers you would like
+            to add to the request. (eg. ``{'X-Test': 'testing'}``)
+
+            compression (bool): If ``True`` (default), try to use gzip 
+            compression.
+
+        Returns:
+            An :class:`HttpResponse` object containing headers and other 
+            meta-information about the page and the page content.
+        '''
+        encoding = ''
+        req = urllib2.Request(url)
+        if form_data:
+            form_data = urllib.urlencode(form_data)
+            req = urllib2.Request(url, form_data)
+        req.add_header('User-Agent', self._user_agent)
+        for k, v in headers.items():
+            req.add_header(k, v)
+        if compression:
+            req.add_header('Accept-Encoding', 'gzip')
+        response = urllib2.urlopen(req)
+        return HttpResponse(response)
+
+
+
+class HttpResponse:
+    '''
+    This class represents a resoponse from an HTTP request.
+    
+    The content is examined and every attempt is made to properly encode it to
+    Unicode.
+    
+    .. seealso::
+        :meth:`Net.http_GET`, :meth:`Net.http_HEAD` and :meth:`Net.http_POST` 
+    '''
+    
+    content = ''
+    '''Unicode encoded string containing the body of the reposne.'''
+    
+    
+    def __init__(self, response):
+        '''
+        Args:
+            response (:class:`mimetools.Message`): The object returned by a call
+            to :func:`urllib2.urlopen`.
+        '''
+        self._response = response
+        html = response.read()
+        try:
+            if response.headers['content-encoding'].lower() == 'gzip':
+                html = gzip.GzipFile(fileobj=StringIO.StringIO(html)).read()
+        except:
+            pass
+        
+        try:
+            content_type = response.headers['content-type']
+            if 'charset=' in content_type:
+                encoding = content_type.split('charset=')[-1]
+        except:
+            pass
+
+        r = re.search('<meta\s+http-equiv="Content-Type"\s+content="(?:.+?);' +
+                      '\s+charset=(.+?)"', html, re.IGNORECASE)
+        if r:
+            encoding = r.group(1) 
+                   
+        try:
+            html = unicode(html, encoding)
+        except:
+            pass
+            
+        self.content = html
+    
+    
+    def get_headers(self):
+        '''Returns a List of headers returned by the server.'''
+        return self._response.info().headers
+    
+        
+    def get_url(self):
+        '''
+        Return the URL of the resource retrieved, commonly used to determine if 
+        a redirect was followed.
+        '''
+        return self._response.geturl()
