@@ -13,24 +13,47 @@ artpath = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + 
 metaset = selfAddon.getSetting('enable_meta')
 
 def CATEGORIES():
-        addDir2('Featured','http://movieshd.co/watch-online/category/featured?filtre=date',1,icon,'',fanart)
-        addDir2('Recently Added','http://movieshd.co/?filtre=date&cat=0',1,icon,'',fanart)
-        addDir2('Most Viewed','http://movieshd.co/?filtre=views&cat=0',1,icon,'',fanart)
-        addDir2('Highest Rated','http://movieshd.co/?filtre=rate&cat=0',1,icon,'',fanart)
-        addDir2('Bollywood','http://movieshd.co/watch-online/category/bollywood',1,icon,'',fanart) 
-        addDir2('Disneys Magic','http://movieshd.co/watch-online/category/disneys?display=tube&filtre=date',1,icon,'',fanart) 
+        addDir2('Featured','http://movieshd.eu/movies/category/featured',1,icon,'',fanart)
+        addDir2('Recently Added','http://movieshd.eu/?filtre=date&cat=0',1,icon,'',fanart)
+        addDir2('Most Viewed','http://movieshd.eu/?display=tube&filtre=views',1,icon,'',fanart)
+        addDir2('Bollywood','http://movieshd.eu/bollywood/',1,icon,'',fanart) 
         addDir2('Genres','url',2,icon,'',fanart)
+        addDir2('Years','http://movieshd.eu/year/',5,icon,'',fanart)
         addDir2('Search','url',3,icon,'',fanart)
-        addLink('','','',icon,fanart)
         addLink('[COLOR blue]Twitter[/COLOR] Feed','url',4,icon,fanart)
         xbmc.executebuiltin('Container.SetViewMode(50)')
-               
+
+def BOLLYWOOD():
+        addDir2('Featured','url',7,icon,'',fanart)
+        addDir2('Recently Added','url',7,icon,'',fanart)
+        addDir2('Action','url',7,icon,'',fanart)
+        addDir2('Comedy ','url',7,icon,'',fanart)
+        addDir2('Romance','url',7,icon,'',fanart)
+        addDir2('Punjabi','url',7,icon,'',fanart)
+
+def GETBOLLYWOOD(name):
+        link = open_url('http://movieshd.eu/bollywood/')
+        regexstring = '<div class="content-widget"><div class="widget-title"><span>'+name+'</span></div>(.+?)</ul>'
+        cat=re.compile(regexstring,re.DOTALL).findall(link)[0]
+        match=re.compile('<img src=".+?" alt=".+?" title="(.+?)"/><a href="(.+?)"').findall(cat)
+        items = len(match)
+        for name,url in match:
+                name2 = cleanHex(name)
+                addDir(name2,url,100,'',len(match))
+        try:
+                match=re.compile('"nextLink":"(.+?)"').findall(link)
+                url= match[0]
+                url = url.replace('\/','/')
+                addDir('Next Page>>',url,1,artpath+'nextpage.png',items,isFolder=True)
+        except: pass
+        if metaset=='true':
+                setView('movies', 'MAIN')
+        else: xbmc.executebuiltin('Container.SetViewMode(50)')
+                     
 def TWITTER():
         text = ''
         twit = 'https://script.google.com/macros/s/AKfycbyBcUa5TlEQudk6Y_0o0ZubnmhGL_-b7Up8kQt11xgVwz3ErTo/exec?560774256146272257'
         link = open_url(twit)
-        link = link.replace('/n','')
-        link = link.decode('utf-8').encode('utf-8').replace('&#39;','\'').replace('&#10;',' - ').replace('&#x2026;','')
         match=re.compile("<title>(.+?)</title>.+?<pubDate>(.+?)</pubDate>",re.DOTALL).findall(link)[1:]
         for status, dte in match:
             dte = dte[:-15]
@@ -40,9 +63,9 @@ def TWITTER():
 
 def GETMOVIES(url,name):
         link = open_url(url)
-        match=re.compile('href="(.+?)" title="(.+?)">').findall(link)
+        match=re.compile('<img src=".+?" alt=".+?" title="(.+?)"/><a href="(.+?)"').findall(link)
         items = len(match)
-        for url,name in match:
+        for name,url in match:
                 name2 = cleanHex(name)
                 addDir(name2,url,100,'',len(match))
         try:
@@ -56,26 +79,33 @@ def GETMOVIES(url,name):
         else: xbmc.executebuiltin('Container.SetViewMode(50)')
         
 def GENRES(url):
-        addDir2('Action','http://movieshd.co/watch-online/category/action/',1,artpath+'action.png','',fanart)
-        addDir2('Adventure','http://movieshd.co/watch-online/category/adventure/',1,artpath+'adventure.png','',fanart)
-        addDir2('Animation','http://movieshd.co/watch-online/category/animation/',1,artpath+'animation.png','',fanart)
-        addDir2('Biography','http://movieshd.co/watch-online/category/biography/',1,artpath+'biography.png','',fanart)
-        addDir2('Comedy','http://movieshd.co/watch-online/category/comedy/',1,artpath+'comedy.png','',fanart)
-        addDir2('Crime','http://movieshd.co/watch-online/category/crime/',1,artpath+'crime.png','',fanart)
-        addDir2('Drama','http://movieshd.co/watch-online/category/drama/',1,artpath+'drama.png','',fanart)
-        addDir2('Family','http://movieshd.co/watch-online/category/family/',1,artpath+'family.png','',fanart)
-        addDir2('Fantasy','http://movieshd.co/watch-online/category/fantasy/',1,artpath+'fantasy.png','',fanart)
-        addDir2('History','http://movieshd.co/watch-online/category/history/',1,artpath+'history.png','',fanart)
-        addDir2('Horror','http://movieshd.co/watch-online/category/horror/',1,artpath+'horror.png','',fanart)
-        addDir2('Music','http://movieshd.co/watch-online/category/music/',1,artpath+'musical.png','',fanart)
-        addDir2('Mystery','http://movieshd.co/watch-online/category/mystery/',1,artpath+'mystery.png','',fanart)
-        addDir2('Romance','http://movieshd.co/watch-online/category/romance/',1,artpath+'romance.png','',fanart)
-        addDir2('Sci-Fi','http://movieshd.co/watch-online/category/sci-fi/',1,artpath+'sci-fi.png','',fanart)
-        addDir2('Sports','http://movieshd.co/watch-online/category/sports/',1,artpath+'sport.png','',fanart)
-        addDir2('Thriller','http://movieshd.co/watch-online/category/thriller/',1,artpath+'thriller.png','',fanart)
-        addDir2('War','http://movieshd.co/watch-online/category/war/',1,artpath+'war.png','',fanart)
-        addDir2('Western','http://movieshd.co/watch-online/category/western/',1,artpath+'western.png','',fanart)
-        setView('movies', 'MAIN')
+        addDir2('Action / Adventure','http://movieshd.eu/movies/category/action-adventure/',1,artpath+'action.png','',fanart)
+        addDir2('Animation','http://movieshd.eu/movies/category/animation/',1,artpath+'animation.png','',fanart)
+        addDir2('Biography','http://movieshd.eu/movies/category/biography/',1,artpath+'biography.png','',fanart)
+        addDir2('Comedy','http://movieshd.eu/movies/category/comedy/',1,artpath+'comedy.png','',fanart)
+        addDir2('Crime','http://movieshd.eu/movies/category/crime/',1,artpath+'crime.png','',fanart)
+        addDir2('Drama','http://movieshd.eu/movies/category/drama/',1,artpath+'drama.png','',fanart)
+        addDir2('Family','http://movieshd.eu/movies/category/family/',1,artpath+'family.png','',fanart)
+        addDir2('Fantasy','http://movieshd.eu/movies/category/fantasy/',1,artpath+'fantasy.png','',fanart)
+        addDir2('History','http://movieshd.eu/movies/category/history/',1,artpath+'history.png','',fanart)
+        addDir2('Horror','http://movieshd.eu/movies/category/horror/',1,artpath+'horror.png','',fanart)
+        addDir2('Music','http://movieshd.eu/movies/category/music/',1,artpath+'musical.png','',fanart)
+        addDir2('Mystery','http://movieshd.eu/movies/category/mystery/',1,artpath+'mystery.png','',fanart)
+        addDir2('Romance','http://movieshd.eu/movies/category/romance/',1,artpath+'romance.png','',fanart)
+        addDir2('Sci-Fi','http://movieshd.eu/movies/category/sci-fi/',1,artpath+'sci-fi.png','',fanart)
+        addDir2('Sports','http://movieshd.eu/movies/category/sports/',1,artpath+'sport.png','',fanart)
+        addDir2('Thriller','http://movieshd.eu/movies/category/thriller/',1,artpath+'thriller.png','',fanart)
+        addDir2('War','http://movieshd.eu/movies/category/war/',1,artpath+'war.png','',fanart)
+        addDir2('Western','http://movieshd.eu/movies/category/western/',1,artpath+'western.png','',fanart)
+        xbmc.executebuiltin('Container.SetViewMode(500)')
+
+def YEARS(url):
+        link = open_url(url)
+        match=re.compile('<li class="border-radius-5"><img src="(.+?)"/><br/><a href="(.+?)"><span>YEAR (.+?)</span></a>').findall(link)
+        for thumb,url,year in match:
+                url = url.replace('https','http')
+                addDir2(year,url,1,thumb,'',fanart)
+        xbmc.executebuiltin('Container.SetViewMode(500)')
 
 def SEARCH():
     search_entered =''
@@ -84,40 +114,12 @@ def SEARCH():
     if keyboard.isConfirmed():
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
-        url = 'http://movieshd.co/?s='+ search_entered
+        url = 'http://movieshd.eu/?s='+ search_entered
         link = open_url(url)
         GETMOVIES(url,name)
 
 def PLAYLINK(name,url,iconimage):
     link = open_url(url)
-    if 'videomega' in link:    
-        match=re.compile('hashkey=(.+?)">').findall(link)
-        if len(match) == 0:
-                match=re.compile("hashkey=(.+?)'>").findall(link)
-        if (len(match) > 0):
-                hashurl="http://videomega.tv/validatehash.php?hashkey="+ match[0]
-                req = urllib2.Request(hashurl)
-                req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-                req.add_header('Referer', url)
-                response = urllib2.urlopen(req)
-                link=response.read()
-                response.close()
-                match=re.compile('var ref="(.+?)"').findall(link)[0]
-                videomega_url = 'http://videomega.tv/?ref='+match 
-        else:
-                match=re.compile("javascript'\>ref='(.+?)'").findall(link)[0]
-                videomega_url = "http://videomega.tv/?ref=" + match                 
-        url = 'http://videomega.tv/cdn.php?ref=%s' % match
-        referer = videomega_url
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        req.add_header('Referer', referer)
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()        
-        stream_url = re.compile('<source src="(.+?)" type="video/mp4"/>').findall(link)[0]
-        stream_url = stream_url + '|User-Agent: Mozilla/5.0 (Linux; U; Android 4.1.2; en-gb; GT-I9100 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'
-
     if 'openload' in link:
          olurl=re.compile('<p><iframe src="(.+?)"').findall(link)[0]
          link = open_url(olurl)
@@ -126,9 +128,6 @@ def PLAYLINK(name,url,iconimage):
     liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
     xbmc.Player ().play(stream_url, liz, False)
-
-
-        
 
 def get_params():
         param=[]
@@ -215,12 +214,14 @@ def showText(heading, text):
             pass
         
 def open_url(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        link = link.replace('\n','')
+        link = link.decode('utf-8').encode('utf-8').replace('&#39;','\'').replace('&#10;',' - ').replace('&#x2026;','')
+        response.close()
+        return link
                 
 def cleanHex(text):
     def fixup(m):
@@ -255,6 +256,10 @@ elif mode==1: GETMOVIES(url,name)
 elif mode==2: GENRES(url)
 elif mode==3: SEARCH()
 elif mode==4: TWITTER()
+elif mode==5: YEARS(url)
+elif mode==6: BOLLYWOOD()
+elif mode==7: GETBOLLYWOOD(name)
+
 elif mode==100: PLAYLINK(name,url,iconimage)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

@@ -405,7 +405,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.movieshd" name="Movies HD" version="1.2.0" provider-name="MoviesHD MetalKettle">
+<addon id="plugin.video.movieshd" name="Movies HD" version="2.0.0" provider-name="MoviesHD / MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -414,6 +414,7 @@
     <import addon="script.module.urlresolver"  version="2.1.2"/>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="script.module.addon.common" version="2.0.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
