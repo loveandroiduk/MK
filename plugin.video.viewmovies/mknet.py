@@ -40,7 +40,7 @@ class Net:
     
     Example::
     
-        from addon.common.net import Net
+        from t0mm0.common.net import Net
         net = Net()
         response = net.http_GET('http://xbmc.org')
         print response.content
@@ -48,8 +48,7 @@ class Net:
     
     _cj = cookielib.LWPCookieJar()
     _proxy = None
-    _user_agent = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.1 ' + \
-                  '(KHTML, like Gecko) Chrome/13.0.782.99 Safari/535.1'
+    _user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
     _http_debug = False
     
     
