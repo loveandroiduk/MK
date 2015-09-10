@@ -145,13 +145,19 @@ def vod(url,name):
     link = cleanHex(link)
     link=link.replace('onclick=SwitchMenu','\nonclick=SwitchMenu').replace('</a><br ','')
     match=re.compile("onclick=SwitchMenu\('(.+?)'\)(.+?)\n").findall(link)
-    for sub, url in match:
-        name = url.split('</div>')[0].replace('>','')
-        addDir(name,url,52,icon,fanart)
+    if len(match) < 1:
+         match=re.compile("<a href=(.+?)>(.+?)/>").findall(link)
+         for url, name in match:
+             url='http://sportsdonkey.club/site/live/vod/'+url 
+             addLink(name,url,4,icon,fanart)
+    else:    
+        for sub, url in match:
+            name = url.split('</div>')[0].replace('>','')
+            addDir(name,url,52,icon,fanart)
 
 def vod2(url,name):
     mk =' '
-    match=re.compile("<a href=(.+?)>(.+?)/>").findall(url)
+    match=re.compile("<a href=(.+?)>(.+?)/").findall(url)
     for url, name in match:
         url='http://sportsdonkey.club/site/live/vod/'+url
         if 'pid' in url:
