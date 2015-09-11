@@ -113,7 +113,6 @@ def getchannels(name,url):
     link = cleanHex(link)
     link=link.replace('onclick=SwitchMenu','\nonclick=SwitchMenu').replace('</a><br ','')
     match=re.compile("onclick=SwitchMenu(.+?)\n").findall(link)
-    print match
     for catdata in match:
         cats=re.compile("\('.+?'\)>(.+?)</div>").findall(catdata)
         for catname in cats:
@@ -170,19 +169,17 @@ def playvod(url,name):
     response = net.http_GET(url)
     link = response.content
     link = cleanHex(link)
-    if 'http://vod.sportsdonkey.club' in link:
-        strurl=re.compile('src="(.+?)"').findall(link)[7]
-        strurl=strurl.replace(' ','%20')
-        cook = open(cookie_file, 'r').read()
-        phpsessid='PHPSESSID='+re.compile("PHPSESSID=(.+?);").findall(cook)[0]
-        amember_nr='amember_nr='+re.compile("amember_nr=(.+?);").findall(cook)[0]
-        strurl = strurl + '|Cookie='+phpsessid+'; '+amember_nr+'|Referer='+url
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-        xbmc.Player ().play(strurl, liz, False)
-    else:
-        print 'non playable'  
+    strurl=re.compile('src="(.+?)"').findall(link)[7]
+    strurl=strurl.replace(' ','%20')
+    cook = open(cookie_file, 'r').read()
+    phpsessid='PHPSESSID='+re.compile('PHPSESSID=(.+?); path="/"; domain=".sportsdonkey.club"').findall(cook)[0]
+    amember_nr='amember_nr='+re.compile('amember_nr=(.+?); path="/"; domain=".sportsdonkey.club"').findall(cook)[0]
+    strurl = strurl + '|Cookie='+phpsessid+'; '+amember_nr+'|Referer='+url
+    ok=True
+    liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
+    xbmc.Player ().play(strurl, liz, False)
+ 
 
 ################### VOD
         
@@ -197,20 +194,15 @@ def schedule():
     cal=re.compile('<ul class="resp-tabs-list">(.+?)<div class').findall(link)[0]
     days=re.compile('<li>(.+?)</li>').findall(cal)
     for day in days:
-        try:
             days[i]='[COLOR white][B]'+days[i]+'[/B][/COLOR]'
             addLink(days[i],'url','mode',art+'white.png',fanart)
             events=re.compile("<\!-- Fixtures -->(.+?)</section>").findall(link)[0]
-            dayevents=re.compile("<div><div class='sidebarbox-title'>(.+?)</a></div></div>").findall(events)[i]
             eventsforday=re.compile("fixture-row-left'>(.+?)</div></div><div class='fixture-row-right'>(.+?)</div>").findall(dayevents)    
             for name,channel in eventsforday:
                 name=name.replace('<div>',' - ')
                 name = '[COLOR white]'+name+'[/COLOR]'
                 addLink(name + ' - ' + channel,'url','mode',art+'black.png',fanart)
             i=i+1
-        except:
-            i=i+1
-            pass
     xbmc.executebuiltin('Container.SetViewMode(51)')
 
 def twitter():
