@@ -120,14 +120,67 @@ def SEARCH():
 
 def PLAYLINK(name,url,iconimage):
     link = open_url(url)
-    if 'openload' in link:
-         olurl=re.compile('<p><iframe src="(.+?)"').findall(link)[0]
-         link = open_url(olurl)
-         stream_url = re.compile('<source type="video/mp4" src="(.+?)">').findall(link)[0]
+    olurl=re.compile('<p><iframe src="(.+?)"').findall(link)[0]
+    print olurl
+    stream_url=resolve(olurl)
+    print stream_url
     ok=True
     liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
     xbmc.Player ().play(stream_url, liz, False)
+
+def resolve(url):
+        # Thanks to Lambda for the resolver :)
+        O = {
+            '___': 0,
+            '$$$$': "f",
+            '__$': 1,
+            '$_$_': "a",
+            '_$_': 2,
+            '$_$$': "b",
+            '$$_$': "d",
+            '_$$': 3,
+            '$$$_': "e",
+            '$__': 4,
+            '$_$': 5,
+            '$$__': "c",
+            '$$_': 6,
+            '$$$': 7,
+            '$___': 8,
+            '$__$': 9,
+            '$_': "constructor",
+            '$$': "return",
+            '_$': "o",
+            '_': "u",
+            '__': "t",
+        }
+        url = url.replace('/f/', '/embed/')
+        import client,jsunpack
+        result = client.request(url)
+        result = re.search('>\s*(eval\(function.*?)</script>', result, re.DOTALL).group(1)
+        result = jsunpack.unpack(result)
+        result = result.replace('\\\\', '\\')
+        result = re.search('(O=.*?)(?:$|</script>)', result, re.DOTALL).group(1)
+        result = re.search('O\.\$\(O\.\$\((.*?)\)\(\)\)\(\);', result)
+        s1 = result.group(1)
+        s1 = s1.replace(' ', '')
+        s1 = s1.replace('(![]+"")', 'false')
+        s3 = ''
+        for s2 in s1.split('+'):
+            if s2.startswith('O.'):
+                s3 += str(O[s2[2:]])
+            elif '[' in s2 and ']' in s2:
+                key = s2[s2.find('[') + 3:-1]
+                s3 += s2[O[key]]
+            else:
+                s3 += s2[1:-1]
+        s3 = s3.replace('\\\\', '\\')
+        s3 = s3.decode('unicode_escape')
+        s3 = s3.replace('\\/', '/')
+        s3 = s3.replace('\\\\"', '"')
+        s3 = s3.replace('\\"', '"')
+        url = re.search('<source\s+src="([^"]+)', s3).group(1)
+        return url
 
 def get_params():
         param=[]
