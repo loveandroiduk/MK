@@ -11,12 +11,13 @@ def CATEGORIES():
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
-        match=re.compile('<a href="(.+?)" class=".+?">(.+?)</a>').findall(link)
+        match=re.compile('<a href="(.+?)".+?class=".+?">(.+?)</a>',re.DOTALL).findall(link)
         for url,name in match:
                 url = url2+url
                 num = name[0]
                 if num.isdigit():
-                        addDir(name,url,2,icon)    
+                        if '-' in name:
+                                addDir(name,url,2,icon)    
 
 def VIDEOLINKS(url,name):
         req = urllib2.Request(url)
