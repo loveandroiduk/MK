@@ -5,29 +5,45 @@ baseurl         = 'https://www.thenewboston.com'
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 def CATEGORIES():
-        req = urllib2.Request('https://www.thenewboston.com/videos.php')
+        req = urllib2.Request(baseurl)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
-        match=re.compile('<a href="(.+?)" class="category-name">(.+?)							<span style').findall(link)
-        match = sorted(match, key=lambda info: info[1])
+        match=re.compile('<a href="(.+?)".+?<div id="link-text">(.+?)</div>',re.DOTALL).findall(link)
         for url,name in match:
-                url = baseurl+url
-                addDir(name,url,1,icon,isFolder=True)
+                if not 'register' in url:
+                      if not 'forum' in url:
+                              if name == 'Beauty' in name: url='/videos_beauty.php'
+                              url = baseurl+url
+                              addDir(name,url,3,icon,isFolder=True)
 
-def GETVIDEOS(url):
+def GETCLASSES(url):
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
-        match=re.compile('<a href="(.+?)" class=".+?">(.+?)</a>').findall(link)
+        match=re.compile('<a href="(.+?)".+?class="category-name">(.+?)  ',re.DOTALL).findall(link)[1:]
+        for url,name in match:
+                name = name.split('(')[0]
+                url = baseurl+url
+                addDir(name,url,1,icon,isFolder=True)
+
+def GETVIDEOS(url):
+        print url
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        match=re.compile('<a href="(.+?)".+?class=".+?">(.+?)</a>',re.DOTALL).findall(link)
         for url,name in match:
                 url = baseurl+url
                 num = name[0]
                 if num.isdigit():
-                        addDir(name,url,2,icon)   
+                        if '-' in name:
+                                addDir(name,url,2,icon)
 
 def VIDEOLINKS(url,name):
         req = urllib2.Request(url)
@@ -81,5 +97,6 @@ print "Site: "+str(site); print "Mode: "+str(mode); print "URL: "+str(url); prin
 if mode==None or url==None or len(url)<1: CATEGORIES()
 elif mode==1: GETVIDEOS(url)
 elif mode==2: VIDEOLINKS(url,name)
+elif mode==3: GETCLASSES(url)
 elif mode==200: PLAYLINK(name,url)
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
