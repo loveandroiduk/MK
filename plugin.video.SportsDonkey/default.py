@@ -194,15 +194,16 @@ def schedule():
     cal=re.compile('<ul class="resp-tabs-list">(.+?)<div class').findall(link)[0]
     days=re.compile('<li>(.+?)</li>').findall(cal)
     for day in days:
-            days[i]='[COLOR white][B]'+days[i]+'[/B][/COLOR]'
-            addLink(days[i],'url','mode',art+'white.png',fanart)
-            events=re.compile("<\!-- Fixtures -->(.+?)</section>").findall(link)[0]
-            eventsforday=re.compile("fixture-row-left'>(.+?)</div></div><div class='fixture-row-right'>(.+?)</div>").findall(dayevents)    
-            for name,channel in eventsforday:
-                name=name.replace('<div>',' - ')
-                name = '[COLOR white]'+name+'[/COLOR]'
-                addLink(name + ' - ' + channel,'url','mode',art+'black.png',fanart)
-            i=i+1
+        days[i]='[COLOR white][B]'+days[i]+'[/B][/COLOR]'
+        addLink(days[i],'url','mode',art+'white.png',fanart)
+        events=re.compile("<\!-- Fixtures -->(.+?)</section>").findall(link)[0]
+        dayevents=re.compile("<div><div class='sidebarbox-title'>(.+?)</a></div></div>").findall(events)[i]
+        eventsforday=re.compile("fixture-row-left'>(.+?)</div></div><div class='fixture-row-right'>(.+?)</div>").findall(dayevents)    
+        for name,channel in eventsforday:
+            name=name.replace('<div>',' - ')
+            name = '[COLOR white]'+name+'[/COLOR]'
+            addLink(name + ' - ' + channel,'url','mode',art+'black.png',fanart)
+        i=i+1       
     xbmc.executebuiltin('Container.SetViewMode(51)')
 
 def twitter():
