@@ -55,7 +55,7 @@ def resolve(url):
 
         result = client.request(url)
 
-        result = re.search('>\s*(eval\(function.*?)</script>', result, re.DOTALL).group(1)
+        result = re.search('(eval\(function.*?)</script>', result, re.DOTALL).group(1)
 
         result = jsunpack.unpack(result)
         result = result.replace('\\\\', '\\')
