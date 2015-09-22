@@ -99,16 +99,18 @@ def SEARCH():
 
 def PLAYLINK(name,url):
         link = open_url(url)
-        match=re.compile("var txha = '(.+?)';").findall(link)[0]    
-        playlist = xbmc.PlayList(1)
-        playlist.clear()
-        listitem = xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=icon)
-        listitem.setInfo("Video", {"Title":name})
-        listitem.setProperty('mimetype', 'video/x-msvideo')
-        listitem.setProperty('IsPlayable', 'true')
-        playlist.add(match,listitem)
-        xbmcPlayer = xbmc.Player(xbmc.PLAYER_CORE_AUTO)
-        xbmcPlayer.play(playlist)
+        posturl = re.compile('url: "(.+?)",').findall(link)[0]
+        postparams = re.compile("data: '(.+?)',").findall(link)[0]
+        req = urllib2.Request(posturl,postparams)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        stream_url = re.compile('<a href="(.+?)" target="_blank" rel="nofollow">.+?</a>').findall(link)[-1]
+        ok=True
+        liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
+        xbmc.Player ().play(stream_url, liz, False)
 
 def get_params():
         param=[]
