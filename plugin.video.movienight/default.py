@@ -68,6 +68,7 @@ def cleanHex(text):
 
 
 def PLAYLINK(name,url,iconimage):
+        print url
         link = open_url(url)
         try:    
                 codedlink=re.compile("onClick=\"javascript:replaceb64Text\('b64block-.+?-1', '(.+?)'").findall(link)[0]
@@ -75,18 +76,12 @@ def PLAYLINK(name,url,iconimage):
                 url=re.compile('src=\&quot\;(.+?)\&quot').findall(decodedlink)[0]
         except:
                 url=re.compile('<iframe src="(.+?)" frameborder').findall(link)[0]
-        utl = url.replace('/files/','/play/')
-        link = open_url(url)
-        stream_url=re.compile('<source type="video/mp4"  src="(.+?)">').findall(link)[0]
-        playlist = xbmc.PlayList(1)
-        playlist.clear()
-        listitem = xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=icon)
-        listitem.setInfo("Video", {"Title":name})
-        listitem.setProperty('mimetype', 'video/x-msvideo')
-        listitem.setProperty('IsPlayable', 'true')
-        playlist.add(stream_url,listitem)
-        xbmcPlayer = xbmc.Player(xbmc.PLAYER_CORE_AUTO)
-        xbmcPlayer.play(playlist)
+        stream_url = urlresolver.HostedMediaFile(url).resolve()
+        ok=True
+        liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
+        xbmc.Player ().play(stream_url, liz, False)
+        
 
 def get_params():
         param=[]
