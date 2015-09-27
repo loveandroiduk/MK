@@ -19,8 +19,8 @@ def EPISODES(name,url,iconimage):
         link = open_url(url)
         match=re.compile("<a href='(.+?)'>(.+?)</a>").findall(link)
         for url,name in match:
-                if 'Watch' in name:
-                        name = name.replace('Watch Online HD','')
+                if 'HD' in name:
+                        name = name.replace('Watch Online','').replace('HD','')
                         addLink(name,url,2,iconimage,fanart)
         try:
             np=re.compile("<a class='blog-pager-older-link' href='(.+?)'").findall(link)[0]  
