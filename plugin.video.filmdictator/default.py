@@ -4,7 +4,6 @@ from metahandler import metahandlers
 
 addon_id = 'plugin.video.filmdictator'
 selfAddon = xbmcaddon.Addon(id=addon_id)
-metaget = metahandlers.MetaData(preparezip=False)
 addon = Addon(addon_id, sys.argv)
 ADDON2=xbmcaddon.Addon(id='plugin.video.filmdictator')
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
@@ -33,7 +32,7 @@ def GETMOVIES(url,name):
                 match=re.compile('"nextLink":"(.+?)"').findall(link)
                 url= match[0]
                 url = url.replace('\/','/')
-                addDir('Next Page>>',url,1,icon,len(match),isFolder=True)
+                addDir2('Next Page>>',url,1,icon,'',fanart)
         except: pass
         if metaset=='true':
                 setView('movies', 'MAIN')
@@ -109,7 +108,8 @@ def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
                 simpleyear=splitName[2].partition(')')
             if len(simpleyear)>0:
                 simpleyear=simpleyear[0]
-            meta = metaget.get_meta('movie', simplename ,simpleyear)
+            mg = metahandlers.MetaData()
+            meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
             u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
             ok=True
             liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=iconimage)
