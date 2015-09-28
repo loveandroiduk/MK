@@ -4,7 +4,6 @@ from metahandler import metahandlers
 
 addon_id = 'plugin.video.movienight'
 selfAddon = xbmcaddon.Addon(id=addon_id)
-metaget = metahandlers.MetaData(preparezip=False)
 addon = Addon(addon_id, sys.argv)
 ADDON2=xbmcaddon.Addon(id='plugin.video.movienight')
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
@@ -27,7 +26,7 @@ def CATEGORIES():
 def GETMOVIES(url,name):
         metaset = selfAddon.getSetting('enable_meta')
         link = open_url(url)
-        match=re.compile('<a href="(.+?)"><img width=".+?" height=".+?" src=".+?" class=" wp-post-image" alt="post image" title="&lt;div class=&quot;home_post_content&quot;&gt;&lt;div class=&quot;in_title&quot;&gt;(.+?)&lt').findall(link)
+        match=re.compile('<a href="(.+?)"><img width=".+?" height=".+?" src=".+?" class=" wp-post-image" alt="post image" title="&lt;div class=&quot;home_post_content&quot;&gt;&lt;div class=&quot;in_title&quot;&gt;(.+?)&lt').findall(link)[1:]
         for url,name in match:
             if 'Series' not in name:
                 name=cleanHex(name)
@@ -103,6 +102,15 @@ def get_params():
 def notification(title, message, ms, nart):
     xbmc.executebuiltin("XBMC.notification(" + title + "," + message + "," + ms + "," + nart + ")")
 
+def addLink(name,url,mode,iconimage,description,fanart):
+        xbmc.executebuiltin('Container.SetViewMode(50)')
+        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
+        ok=True
+        liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
+        liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
+        liz.setProperty('fanart_image', fanart)
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+        return ok
 def addDir2(name,url,mode,iconimage,description,fanart):
         xbmc.executebuiltin('Container.SetViewMode(50)')
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
@@ -123,7 +131,8 @@ def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
                 simpleyear=splitName[2].partition(')')
             if len(simpleyear)>0:
                 simpleyear=simpleyear[0]
-            meta = metaget.get_meta('movie', simplename ,simpleyear)
+            mg = metahandlers.MetaData()
+            meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
             u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
             ok=True
             liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=iconimage)
