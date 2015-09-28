@@ -5,7 +5,6 @@ from metahandler import metahandlers
 addon_id = 'plugin.video.viewmovies'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 datapath= xbmc.translatePath(selfAddon.getAddonInfo('profile'))
-metaget = metahandlers.MetaData(preparezip=False)
 addon = Addon(addon_id, sys.argv)
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
@@ -140,7 +139,8 @@ def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
                 simpleyear=splitName[2].partition(')')
             if len(simpleyear)>0:
                 simpleyear=simpleyear[0]
-            meta = metaget.get_meta('movie', simplename ,simpleyear)
+            mg = metahandlers.MetaData()
+            meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
             u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
             ok=True
             liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=iconimage)
