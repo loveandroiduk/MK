@@ -10,40 +10,13 @@ art 		= xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/
 user            = selfAddon.getSetting('hqusername')
 passw           = selfAddon.getSetting('hqpassword')
 cookie_file     = os.path.join(os.path.join(datapath,''), 'SD.lwp')
-cookie_file2    = os.path.join(os.path.join(datapath,''), 'DS.lwp')
 net             = mknet.Net()
 
 
 
-if user == '' or passw == '' or user == 'Droidsticks':
+if user == '' or passw == '':
     if os.path.exists(cookie_file):
         os.remove(cookie_file)
-    try:
-        wizardpath = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.aswizard', 'settings.xml'))
-        if os.path.exists(wizardpath):
-            wizlog = open(wizardpath, 'r').read()
-            wizuser = re.compile('<setting id="dsusername" value="(.+?)"').findall(wizlog)[0]
-            wizpass = re.compile('<setting id="dspassword" value="(.+?)"').findall(wizlog)[0]
-            amemberurl = 'http://dswizard.co/amember/member'
-            hqpass = 'http://dswizard.co/amember/content/f/id/8/'
-            html = net.http_GET(amemberurl).content
-            r = re.findall(r'<input type="hidden" name="(.+?)" value="(.+?)" />', html, re.I)
-            post_data = {}
-            post_data['amember_login'] = wizuser
-            post_data['amember_pass'] = wizpass
-            for name, value in r:
-                post_data[name] = value
-                net.http_GET(amemberurl)
-                net.http_POST(amemberurl,post_data)
-                net.save_cookies(cookie_file)
-                net.set_cookies(cookie_file)
-                response = net.http_GET(amemberurl)
-        if 'Logged in as' in response.content:
-                response = net.http_GET(hqpass)
-                link = response.content
-                user=re.compile('<username>(.+?)</username>').findall(link)[0]
-                passw=re.compile('<password>(.+?)</password>').findall(link)[0]
-    except:
         dialog = xbmcgui.Dialog()
         ret = dialog.yesno('Sports Donkey', 'Please enter your Sports Donkey account details','or register if you dont have an account','at http://sportsdonkey.club','Cancel','Login')
         if ret == 1:
@@ -89,10 +62,10 @@ def Index():
     addDir('Calendar','url',6,icon,fanart)
     addDir('Live Streams','url',1,icon,fanart)
     addDir('Video on Demand','http://sportsdonkey.club/site/live/vod/',5,icon,fanart)
-    lasttweet = twitter()
-    addLink('','url','mode',art+'black.png',fanart)
-    addLink('[COLOR blue]@Sports_Donkey - Follow us on Twitter for the latest updates [/COLOR]','url','mode',icon,fanart)
-    addLink('[COLOR blue]Latest Tweet: [/COLOR]'+lasttweet,'url','mode',icon,fanart)
+    #lasttweet = twitter()
+    #addLink('','url','mode',art+'black.png',fanart)
+    #addLink('[COLOR blue]@Sports_Donkey - Follow us on Twitter for the latest updates [/COLOR]','url','mode',icon,fanart)
+    #addLink('[COLOR blue]Latest Tweet: [/COLOR]'+lasttweet,'url','mode',icon,fanart)
 
 ################### LIVE
     
