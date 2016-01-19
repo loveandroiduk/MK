@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="Settings">
+		<setting id="test_bin" type="bool" label="Try experimental bin" default="false"/>
+		<setting id="piauser" type="text" label="Username" default="" visible="false"/>
+		<setting id="piapass" type="text"label="Password" default="" visible="false" option="hidden" />
+		<setting id="connected" type="text" label="connected" default="" visible="false"/>
+		<setting id="startup" type="text" label="startup" default="" visible="false"/>
+   </category>
+</settings>
