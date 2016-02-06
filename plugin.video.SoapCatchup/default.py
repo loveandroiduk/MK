@@ -53,17 +53,36 @@ def EPISODES(name,url,iconimage):
 
 def PLAYEP(name,url,iconimage):
         if urlresolver.HostedMediaFile(url).valid_url():
-                stream_url = urlresolver.HostedMediaFile(url).resolve()
-        else:
-                link = open_url(url)
-                url=re.compile('src="(.+?)"></iframe>').findall(link)[0]
-                url=url.split('?autoplay')[0]
-                link = open_url(url)
-                streamurl = re.compile('mp4","url":"(.+?)"').findall(link)[-1]
-                stream_url=streamurl.replace('\\/','/')
+                stream_url = resolve(url)
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setPath(stream_url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+
+def resolve(url):
+        import net
+        net = net.Net()
+        web_url = url
+        html = net.http_GET(web_url).content
+        data = {}
+        r = re.findall(r'type="hidden"\s+name="(.+?)"\s+value="(.*?)"', html)
+        if r:
+            for name, value in r:
+                data[name] = value
+        import captcha_lib
+        data['method_free'] = 'Free Download'
+        data.update(captcha_lib.do_captcha(html))
+        html = net.http_POST(web_url, data).content
+        data = {}
+        r = re.findall(r'type="hidden"\s+name="(.+?)"\s+value="(.*?)"', html)
+        if r:
+            for name, value in r:
+                data[name] = value
+        data['referer'] = web_url
+        headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36' }
+        request = urllib2.Request(web_url, data=urllib.urlencode(data), headers=headers)
+        try: stream_url = urllib2.urlopen(request).geturl()
+        except: return
+        return stream_url
         
 def cleanHex(text):
     def fixup(m):

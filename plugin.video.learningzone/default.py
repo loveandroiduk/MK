@@ -15,28 +15,48 @@ def CATEGORIES():
                 if not 'class' in name:
                         addDir(name,url,3,icon,isFolder=True)
 
-def GETCLASSES(url):
+def GETSUBJECT(url):
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
         link=response.read()
+        link=link.replace('\n','').replace('\t','').replace('  ','')
         response.close()
-        match=re.compile('<a href="(.+?)">.+?<span class="mm-text">(.+?)</a>',re.DOTALL).findall(link)[1:]
-        for url,name in match:
-                if not '#' in url:
+        match=re.compile('<i class="panel.+?"></i>(.+?)</span></div><div class=".+?">').findall(link)
+        for name in match:
+                if not 'Most Popular' in name:
                         addDir(name,url,1,icon,isFolder=True)
-
-def GETVIDEOS(url):
+       
+def GETCATS(name,url):
+        name2=name
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
         link=response.read()
+        link=link.replace('\n','').replace('\t','').replace('  ','')
         response.close()
-        match=re.compile('<li class=.+?<a href="(.+?)">.+?<span class="mm-text">(.+?)</a>',re.DOTALL).findall(link)[1:]
-        for url,name in match:
+        data=re.compile('<div class="panel video-category-panel">(.+?)</div></div></div>').findall(link)
+        for cats in data:
+                if name2 in cats:
+                        data=re.compile('<a href="(.+?)" class="list-group-item">(.+?)</a>').findall(cats)
+                        for url,name in data:
+                                addDir(name,url,4,icon,isFolder=True)
+
+def GETVIDS(name,url):
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        link=link.replace('\n','').replace('\t','').replace('  ','')
+        response.close()
+        data=re.compile('<a href="(.+?)" style="font-size:12px; line-height:inherit; padding:8px 14px;"><span class="mm-text">(.+?)</span>').findall(link)
+        for url,name in data:
                 addDir(name,url,2,icon,isFolder=False)
 
-def VIDEOLINKS(url,name):
+def PLAYLINK(url,name):
+        if 'a href=' in url:
+                url=url+'"'
+                url=re.compile('<a href="(.+?)"').findall(url)[-1]
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
@@ -93,8 +113,9 @@ except: pass
 print "Site: "+str(site); print "Mode: "+str(mode); print "URL: "+str(url); print "Name: "+str(name)
  
 if mode==None or url==None or len(url)<1: CATEGORIES()
-elif mode==1: GETVIDEOS(url)
-elif mode==2: VIDEOLINKS(url,name)
-elif mode==3: GETCLASSES(url)
-elif mode==200: PLAYLINK(name,url)
+elif mode==1: GETCATS(name,url)
+elif mode==2: PLAYLINK(url,name)
+elif mode==3: GETSUBJECT(url)
+elif mode==4: GETVIDS(name,url)
+
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

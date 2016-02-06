@@ -10,12 +10,16 @@ def CATEGORIES():
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)
         link=response.read()
+        link=link.replace('\n','').replace('\t','').replace('  ','')
         response.close()
-        match=re.compile('<li class=.+?<a href="(.+?)">.+?<span class="mm-text">(.+?)</a>',re.DOTALL).findall(link)[1:]
-        for url,name in match:
+        data=re.compile('<a href="(.+?)" style="font-size:12px; line-height:inherit; padding:8px 14px;"><span class="mm-text">(.+?)</span>').findall(link)
+        for url,name in data:
                 addDir(name,url,2,icon,isFolder=False)    
 
 def VIDEOLINKS(url,name):
+        if 'a href=' in url:
+                url=url+'"'
+                url=re.compile('<a href="(.+?)"').findall(url)[-1]
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         response = urllib2.urlopen(req)

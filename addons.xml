@@ -170,7 +170,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.filmdictator" name="Film Dictator" version="2.0.3" provider-name="MetalKettle">
+<addon id="plugin.video.filmdictator" name="Film Dictator" version="2.0.4" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -188,22 +188,6 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
     <description lang="en"></description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.footballhighlightssubreddit" version="1.1.1" name="Sparkys Football Highlights" provider-name="MetalKettle/Surmac/Sparky">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.urlresolver"  version="2.1.2"/>
-	<import addon="script.module.simplejson" version="3.3.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="addon.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Video Player for Football Highlights</summary>
-        <description>Welcome to Sparkys Football Highlights. Big shout out to Surmac who produced the original code for this addon without his hard work this would not have been possible.  This was one of my favourite addons and was gutted when it stopped working, could not let it die so fixed it for your enjoyment.  I have pimped it up a bit so I hope you like it.  Currently supports videos hosted on Google Drive,Dailymotion,YouTube and Cloudy Videos.</description>
-        <platform>all</platform>
-    </extension>
 </addon>
 
 <addon
@@ -233,7 +217,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.highlights" name="Football Highlights" version="1.1.1" provider-name="MetalKettle">
+<addon id="plugin.video.highlights" name="Football Highlights" version="1.1.2" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -247,7 +231,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.5" provider-name="MetalKettle">
+<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.10" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -303,7 +287,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.kiddiecartoons" name="Kiddie Cartoons" version="1.0.1" provider-name="MetalKettle">
+<addon id="plugin.video.kiddiecartoons" name="Kiddie Cartoons" version="1.0.2" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -317,7 +301,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.learningzone" name="Learning Zone" version="1.0.5" provider-name="MetalKettle">
+<addon id="plugin.video.learningzone" name="Learning Zone" version="1.0.6" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -438,7 +422,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.pythontut" name="Python Tutorial Videos" version="1.0.6" provider-name="MetalKettle">
+<addon id="plugin.video.pythontut" name="Python Tutorial Videos" version="1.0.7" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -452,7 +436,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.SoapCatchup" name="Soap Catchup" version="1.0.5" provider-name="MetalKettle">
+<addon id="plugin.video.SoapCatchup" name="Soap Catchup" version="1.0.6" provider-name="MetalKettle">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -499,26 +483,6 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.stealthhd" name="Online Movies Pro" version="99.0" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides></provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.tellyads" name="Telly Ads" version="1.0.0" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -549,7 +513,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
 	</extension>
 </addon>
 
-<addon id="plugin.video.toonmania" name="ToonMania" version="1.0.2" provider-name="MetalKettle">
+<addon id="plugin.video.toonmania" name="ToonMania" version="1.0.1" provider-name="MetalKettle">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -577,7 +541,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="2.0.1" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="2.0.7" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -597,21 +561,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.uktvnow" name="UKTV Now" version="1.0.5" provider-name="MetalKettle">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.viewmovies" name="ViewMovies" version="1.0.3" provider-name="MetalKettle">
+<addon id="plugin.video.viewmovies" name="ViewMovies" version="1.0.4" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -632,7 +582,7 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="plugin.video.watch1080" name="Watch 1080p" version="1.0.1" provider-name="MetalKettle">
+<addon id="plugin.video.watch1080" name="Watch 1080p" version="1.0.2" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -692,20 +642,20 @@ this is an unofficial addon. please don't ask for support in openelec forum / ir
   </extension>
 </addon>
 
-<addon id="repository.metalkettle" name="MetalKettle Add-on Repository" version="1.6.3" provider-name="MetalKettle">
-	<extension point="xbmc.addon.repository" name="MetalKettle Add-on Repository">
-		<dir>
-			<info compressed="false">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml</info>
-			<checksum>http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml.md5</checksum>
-			<datadir zip="true">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/zips</datadir>
-		</dir>
-		<info compressed="false">https://offshoregit.com/metalkettle/addons.xml</info>
-		<checksum>https://offshoregit.com/metalkettle/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/metalkettle/zips</datadir>
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.0" provider-name="MetalKettle">
+	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://offshoregit.com/metalkettle/addons.xml</info>
+		<checksum>http://offshoregit.com/metalkettle/addons.xml.md5</checksum>
+		<datadir zip="true">http://offshoregit.com/metalkettle/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Install Add-ons from MetalKettle</summary>
-		<description lang="en">Download and install add-ons from the MetalKettle Repository.</description>
+		<summary>Install my Addons</summary>
+		<description>Download and install addons from MetalKettle</description>
 		<platform>all</platform>
 	</extension>
 </addon>

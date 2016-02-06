@@ -17,27 +17,27 @@ cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 
 
 def CATEGORIES():
-        addDir2('Recently Added','http://www.hulubox.com/watch-category/all/',1,icon,fanart)
-        addDir2('Action','http://www.hulubox.com/watch-category/all/action',1,icon,fanart)
-        addDir2('Adventure','http://www.hulubox.com/watch-category/all/adventure',1,icon,fanart)
-        addDir2('Comedy','http://www.hulubox.com/watch-category/all/comedy',1,icon,fanart)
-        addDir2('Crime','http://www.hulubox.com/watch-category/all/crime',1,icon,fanart)
-        addDir2('Drama','http://www.hulubox.com/watch-category/all/drama',1,icon,fanart)
-        addDir2('Horror','http://www.hulubox.com/watch-category/all/horror',1,icon,fanart)
-        addDir2('Thriller','http://www.hulubox.com/watch-category/all/thriller',1,icon,fanart)
+        addDir2('Recently Added','http://www.hulubox.com/category/all/',1,icon,fanart)
+        addDir2('Action','http://www.hulubox.com/category/all/action',1,icon,fanart)
+        addDir2('Adventure','http://www.hulubox.com/category/all/adventure',1,icon,fanart)
+        addDir2('Comedy','http://www.hulubox.com/category/all/comedy',1,icon,fanart)
+        addDir2('Crime','http://www.hulubox.com/category/all/crime',1,icon,fanart)
+        addDir2('Drama','http://www.hulubox.com/category/all/drama',1,icon,fanart)
+        addDir2('Horror','http://www.hulubox.com/category/all/horror',1,icon,fanart)
+        addDir2('Thriller','http://www.hulubox.com/category/all/thriller',1,icon,fanart)
         addDir2('Years','url',4,icon,fanart)
         addDir2('Search','url',3,icon,fanart)
 
 def YEARS():
-        addDir2('1950-1999','http://www.hulubox.com/watch-category/all/1950-1999/',1,icon,fanart)
-        addDir2('2000-2004','http://www.hulubox.com/watch-category/all/2000-2004/',1,icon,fanart)
-        addDir2('2005-2010','http://www.hulubox.com/watch-category/all/2005-2010/',1,icon,fanart)
-        addDir2('2011','http://www.hulubox.com/watch-category/all/2011/',1,icon,fanart)
-        addDir2('2012','http://www.hulubox.com/watch-category/all/2012/',1,icon,fanart)
-        addDir2('2013','http://www.hulubox.com/watch-category/all/2013',1,icon,fanart)
-        addDir2('2014','http://www.hulubox.com/watch-category/all/2014',1,icon,fanart)
-        addDir2('2015','http://www.hulubox.com/watch-category/all/2015',1,icon,fanart)
-        addDir2('2016','http://www.hulubox.com/watch-category/all/2016',1,icon,fanart)
+        addDir2('1950-1999','http://www.hulubox.com/category/all/1950-1999/',1,icon,fanart)
+        addDir2('2000-2004','http://www.hulubox.com/category/all/2000-2004/',1,icon,fanart)
+        addDir2('2005-2010','http://www.hulubox.com/category/all/2005-2010/',1,icon,fanart)
+        addDir2('2011','http://www.hulubox.com/category/all/2011/',1,icon,fanart)
+        addDir2('2012','http://www.hulubox.com/category/all/2012/',1,icon,fanart)
+        addDir2('2013','http://www.hulubox.com/category/all/2013',1,icon,fanart)
+        addDir2('2014','http://www.hulubox.com/category/all/2014',1,icon,fanart)
+        addDir2('2015','http://www.hulubox.com/category/all/2015',1,icon,fanart)
+        addDir2('2016','http://www.hulubox.com/category/all/2016',1,icon,fanart)
            
 def GETMOVIES(url,name):
         metaset = selfAddon.getSetting('enable_meta')
@@ -78,11 +78,11 @@ def SEARCH():
 
 def PLAYLINK(name,url,iconimage):
         link = open_url(url)
-        stream_url=re.compile('<script type="text/javascript" src="(.+?)"></script>').findall(link)[0]
+        stream_url=re.compile('"http://videomega.tv/validatehash.php\?hashkey=(.+?)"').findall(link)[0]
+        stream_url='http://videomega.tv/validatehash.php?hashkey='+stream_url
         url = urlresolver.resolve(stream_url)
-        ok=True
+        url=url.replace('Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36')
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
         xbmc.Player ().play(url, liz, False)
 
 def get_params():
@@ -117,7 +117,6 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setProperty('fanart_image', fanart)
         liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
-        liz.setProperty("IsPlayable","true")
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         return ok
 
